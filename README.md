@@ -1,6 +1,7 @@
 @twipped/utils
 ===
 
+A collection of basic utility functions that I use in many of my rollup/react projects instead of lodash. No, it's not documented.
 
 ### Usage
 
@@ -19,5 +20,5 @@ const u = require('@twipped/utils');
 In ES6:
 
 ```js
-import u from '@twipped/utils';
+import * as u from '@twipped/utils';
 ```
