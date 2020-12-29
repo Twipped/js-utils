@@ -206,6 +206,75 @@ export function lt (a, b) {
   return false;
 }
 
+// based on fast-shallow-equal
+export function shallowEqual (a, b) {
+  if (a === b) return true;
+  if (isNaN(a) && isNaN(b)) return true;
+  if ((!a || !b)) return false;
+
+  if (isArray(a) && isArray(b)) {
+    if (a.length !== b.length) return false;
+    for (let i = a.length; i--;) {
+      if (a[i] !== b[i]) return false;
+    }
+  }
+
+  if (!isObject(a) || !isObject(b)) return false;
+
+  const propNames = keys(a);
+  const length = propNames.length;
+
+  for (let i = 0; i < length; i++) {
+    if (!(propNames[i] in b)) return false;
+  }
+
+  for (let i = 0; i < length; i++) {
+    if (a[propNames[i]] !== b[propNames[i]]) return false;
+  }
+
+  return length === propNames(b).length;
+}
+
+// based on fast-deep-equal
+export function deepEqual (a, b) {
+  if (a === b) return true;
+  if (isNaN(a) && isNaN(b)) return true;
+  if ((!a || !b)) return false;
+  if (typeof a !== 'object' && typeof b !== 'object') return false;
+
+  if (a.constructor !== b.constructor) return false;
+
+  var length, i, propNames;
+  if (isArray(a)) {
+    length = a.length;
+    if (length !== b.length) return false;
+    for (i = length; i-- !== 0;) {
+      if (!deepEqual(a[i], b[i])) return false;
+    }
+    return true;
+  }
+
+  if (a instanceof RegExp) return a.source === b.source && a.flags === b.flags;
+  if (a.valueOf !== Object.prototype.valueOf) return a.valueOf() === b.valueOf();
+  if (a.toString !== Object.prototype.toString) return a.toString() === b.toString();
+
+  propNames = Object.keys(a);
+  length = propNames.length;
+  if (length !== Object.keys(b).length) return false;
+
+  for (i = length; i-- !== 0;) {
+    if (!Object.prototype.hasOwnProperty.call(b, propNames[i])) return false;
+  }
+
+  for (i = length; i-- !== 0;) {
+    var key = propNames[i];
+
+    if (!deepEqual(a[key], b[key])) return false;
+  }
+
+  return true;
+}
+
 export function hasOwn (obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
@@ -355,6 +424,29 @@ export function isMappable (collection, arrays = true) {
     isMap(collection) ||
     collection && (typeof collection === 'object' || typeof collection === 'function')
   );
+}
+
+export const MAPMODE_ARRAY  = 'ARRAY';
+export const MAPMODE_SET    = 'SET';
+export const MAPMODE_MAP    = 'MAP';
+export const MAPMODE_OBJECT = 'OBJECT';
+
+export function mapMode (collection, strict) {
+  if (isArray(collection)) return MAPMODE_ARRAY;
+  if (isSet(collection)) return MAPMODE_SET;
+  if (isMap(collection)) return MAPMODE_MAP;
+  if (isObject(collection, strict)) return MAPMODE_OBJECT;
+  return false;
+}
+
+export function faccimilate (collection, strict) {
+  switch (isString(collection) ? collection : mapMode(collection, strict)) {
+  case MAPMODE_ARRAY:  return [];
+  case MAPMODE_SET:    return new Set();
+  case MAPMODE_MAP:    return new Map();
+  case MAPMODE_OBJECT: return {};
+  default:             return undefined;
+  }
 }
 
 export function sizeOf (collection) {
@@ -665,11 +757,11 @@ export function sorter (match) {
 }
 
 export function toPairs (object) {
-  return Object.entries(object);
+  return object && Object.entries(object) || [];
 }
 
 export function fromPairs (entries) {
-  return mapReduce(entries, ([ v, k ]) => [ v, k ]);
+  return entries && entries.length && mapReduce(entries, ([ v, k ]) => [ v, k ]) || {};
 }
 
 export function slice (collection, begin, end) {
@@ -894,7 +986,7 @@ export function omit (collection, predicate) {
     predicate = [ predicate ];
   }
 
-  if (!isArray(predicate)) throw new Error('omit requires a string or array of strings');
+  if (!isArray(predicate)) throw new Error('omit requires a function, a string or and array of strings for the second argument');
   return mapReduce(collection, (value, key) =>
     (predicate.includes(key)
       ? [ undefined, undefined ]
@@ -917,12 +1009,56 @@ export function pick (collection, predicate) {
     predicate = [ predicate ];
   }
 
-  if (!isArray(predicate)) throw new Error('pick requires a string or array of strings');
+  if (!isArray(predicate)) throw new Error('pick requires a function, a string or and array of strings for the second argument');
   return predicate.reduce((obj, key) => {
     const value = get(collection, key);
     if (isUndefined(value)) return obj;
     return set(obj, key, value);
   }, {});
+}
+
+export function marshal (collection, predicate) {
+  if (!collection) return {};
+
+  const mode = mapMode(collection);
+  if (!mode) throw new TypeError('Received unmappable collection.');
+  const buckets = {};
+  const marshallers = {
+    [MAPMODE_ARRAY]: (bucket, v) => {
+      if (!buckets[bucket]) buckets[bucket] = [];
+      buckets[bucket].push(v);
+    },
+    [MAPMODE_OBJECT]: (bucket, v, k) => {
+      if (!buckets[bucket]) buckets[bucket] = {};
+      buckets[bucket][k] = v;
+    },
+    [MAPMODE_MAP]: (bucket, v, k) => {
+      if (!buckets[bucket]) buckets[bucket] = new Map();
+      buckets[bucket].set(k, v);
+    },
+    [MAPMODE_SET]: (bucket, v) => {
+      if (!buckets[bucket]) buckets[bucket] = new Set();
+      buckets[bucket].add(v);
+    },
+  };
+
+  if (isFunction(predicate)) {
+    each(collection, (value, key, index) => {
+      marshallers[mode](predicate(value, key, index), value, key);
+    });
+    return buckets;
+  }
+
+  if (isString(predicate)) {
+    predicate = [ predicate ];
+  }
+
+  if (!isArray(predicate)) throw new Error('marshal requires a function, a string or and array of strings for the second argument');
+  const targets = new Set(predicate);
+  each(collection, (value, key) => {
+    marshallers[mode](targets.has(key) ? 0 : 1, value, key);
+  });
+  return [ buckets[0] || faccimilate(collection), buckets[1] || faccimilate(collection) ];
 }
 
 
@@ -1031,6 +1167,43 @@ export function mapValues (collection, predicate) {
     if (!iterate(value, key, i++)) break;
   }
   return iterate.result();
+}
+
+export function range (start, end, predicate = ((i) => i)) {
+  const result = [];
+  for (let i = start; i <= end; i++) {
+    const res = predicate(i, i, i);
+    if (res !== undefined) result.push(res);
+  }
+  return result;
+}
+
+/**
+ * Iterates over a collection, ignoring the results
+ * @param  {Object|Array|Map|Set} collection
+ * @param  {Function} iteratee Callback invoked for each item, receives `value, key, index`, returns `[key, value]`;
+ * @return {Object}
+ */
+export function each (collection, predicate) {
+  if (!collection) return {};
+
+  const iterate = makeIterate(predicate, true);
+  let i = 0;
+
+  if (isArray(collection)) {
+    for (const value of collection) iterate(value, i, i++);
+
+  } else if (isSet(collection)) {
+    for (const item of collection) iterate(item, i, i++);
+
+  } else if (isMap(collection)) {
+    for (const [ key, value ] of collection.entries()) iterate(value, key, i++);
+
+  } else if (isObject(collection)) {
+    for (const [ key, value ] of Object.entries(collection)) iterate(value, key, i++);
+  }
+
+  return collection;
 }
 
 /**
