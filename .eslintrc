@@ -11,6 +11,9 @@
 		"node/no-unsupported-features/es-syntax": "off",
 		"node/no-unpublished-import": ["error", {
             "allowModules": ["date-fns"]
-        }]
+        }],
+        'indent': [ 2, 2, {
+          'MemberExpression': 1,
+        } ],
 	}
 }
