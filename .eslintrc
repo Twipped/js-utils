@@ -1,0 +1,16 @@
+{
+	"extends": "twipped/node",
+	"parser": "babel-eslint",
+	parserOptions: {
+		'ecmaVersion': 2018,
+		sourceType: 'module',
+	},
+	"rules": {
+		"promise/no-native": 0,
+		"max-len": 0,
+		"node/no-unsupported-features/es-syntax": "off",
+		"node/no-unpublished-import": ["error", {
+            "allowModules": ["date-fns"]
+        }]
+	}
+}
