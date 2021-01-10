@@ -184,6 +184,7 @@ export function containsTruthy     (input) { return anyBy(input, isTruthy); }
 export function containsFalsey     (input) { return anyBy(input, isFalsey); }
 
 export function truthy (value) {
+  if (isDate(value)) return !isNaN(value);
   if (isMappable(value)) return !!sizeOf(value);
   return !!value;
 }
@@ -1268,13 +1269,16 @@ export function clamp (value, minv = -Infinity, maxv = Infinity) {
   if (isDate(value)) return new Date(Math.max(Math.min(value, maxv), minv));
   return Math.max(Math.min(value, maxv), minv);
 }
+
 export function min (...collection) {
   collection = flatten(collection);
+  if (isDate(collection[0])) return new Date(Math.min(...collection));
   return Math.min(...collection);
 }
 
 export function max (...collection) {
   collection = flatten(collection);
+  if (isDate(collection[0])) return new Date(Math.max(...collection));
   return Math.max(...collection);
 }
 
