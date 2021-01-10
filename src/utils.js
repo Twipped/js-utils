@@ -1,7 +1,7 @@
 
 export { default as slugify } from './slugify';
 
-export const MISSING = '{!MISSING!}';
+export function noop () {}
 
 // htmlEscape copied from Sindre Sorhus' escape-goat
 export const htmlEscape = (input) => input
@@ -1273,6 +1273,13 @@ export function flatten (collection, depth = Infinity) {
   );
 }
 
+export function clamp (value, minv = -Infinity, maxv = Infinity) {
+  if (value === undefined || value === null || value === '') return null;
+  if (minv === undefined || minv === null || minv === '') minv = -Infinity;
+  if (maxv === undefined || maxv === null || maxv === '') maxv = Infinity;
+  if (isDate(value)) return new Date(Math.max(Math.min(value, maxv), minv));
+  return Math.max(Math.min(value, maxv), minv);
+}
 export function min (...collection) {
   collection = flatten(collection);
   return Math.min(...collection);
@@ -1316,4 +1323,15 @@ export function jsonSoftParse (input, fallback) {
   } catch (e) {
     return fallback;
   }
+}
+
+export function defer (fn) {
+  if (typeof cancelAnimationFrame === 'undefined') return timeout(fn, 0);
+  const handle = requestAnimationFrame(fn);
+  return () => cancelAnimationFrame(handle);
+}
+
+export function timeout (fn, time) {
+  const handle = setTimeout(fn, time);
+  return () => clearTimeout(handle);
 }
