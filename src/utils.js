@@ -207,72 +207,60 @@ export function lt (a, b) {
 }
 
 // based on fast-shallow-equal
-export function shallowEqual (a, b) {
+export function equal (a, b, depth = 1) {
   if (a === b) return true;
   if (isNaN(a) && isNaN(b)) return true;
-  if ((!a || !b)) return false;
+  if ((!a || !b) || typeof a !== typeof b) return false;
 
-  if (isArray(a) && isArray(b)) {
+  if (isRegExp(a) && isRegExp(b)) return a.source === b.source && a.flags === b.flags;
+
+  if (!depth) {
+    if (a.valueOf !== Object.prototype.valueOf) return a.valueOf() === b.valueOf();
+    if (a.toString !== Object.prototype.toString) return a.toString() === b.toString();
+    return false;
+  }
+
+  const aType = mapMode(a);
+  const bType = mapMode(b);
+  if (aType !== bType || !aType || !bType) return false;
+
+  const aLen = sizeOf(a);
+  const bLen = sizeOf(b);
+  if (aLen !== bLen) return false;
+
+  if (aType === MAPMODE_ARRAY) {
     if (a.length !== b.length) return false;
     for (let i = a.length; i--;) {
-      if (a[i] !== b[i]) return false;
+      if (!equal(a[i], b[i], depth - 1)) return false;
     }
-  }
 
-  if (!isObject(a) || !isObject(b)) return false;
-
-  const propNames = keys(a);
-  const length = propNames.length;
-
-  for (let i = 0; i < length; i++) {
-    if (!(propNames[i] in b)) return false;
-  }
-
-  for (let i = 0; i < length; i++) {
-    if (a[propNames[i]] !== b[propNames[i]]) return false;
-  }
-
-  return length === propNames(b).length;
-}
-
-// based on fast-deep-equal
-export function deepEqual (a, b) {
-  if (a === b) return true;
-  if (isNaN(a) && isNaN(b)) return true;
-  if ((!a || !b)) return false;
-  if (typeof a !== 'object' && typeof b !== 'object') return false;
-
-  if (a.constructor !== b.constructor) return false;
-
-  var length, i, propNames;
-  if (isArray(a)) {
-    length = a.length;
-    if (length !== b.length) return false;
-    for (i = length; i-- !== 0;) {
-      if (!deepEqual(a[i], b[i])) return false;
+  } else if (aType === MAPMODE_SET) {
+    for (const item of a) {
+      if (!b.has(item)) return false;
     }
-    return true;
-  }
 
-  if (a instanceof RegExp) return a.source === b.source && a.flags === b.flags;
-  if (a.valueOf !== Object.prototype.valueOf) return a.valueOf() === b.valueOf();
-  if (a.toString !== Object.prototype.toString) return a.toString() === b.toString();
+  } else if (aType === MAPMODE_MAP) {
+    for (const [ key, left ] of a.entries()) {
+      const right = b.get(key);
+      if (!equal(left, right, depth - 1)) return false;
+    }
 
-  propNames = Object.keys(a);
-  length = propNames.length;
-  if (length !== Object.keys(b).length) return false;
-
-  for (i = length; i-- !== 0;) {
-    if (!Object.prototype.hasOwnProperty.call(b, propNames[i])) return false;
-  }
-
-  for (i = length; i-- !== 0;) {
-    var key = propNames[i];
-
-    if (!deepEqual(a[key], b[key])) return false;
+  } else if (aType === MAPMODE_OBJECT) {
+    for (const [ key, left ] of Object.entries(a)) {
+      const right = a[key];
+      if (!equal(left, right, depth - 1)) return false;
+    }
   }
 
   return true;
+}
+
+export function shallowEqual (a, b) {
+  return equal(a, b, 1);
+}
+
+export function deepEqual (a, b) {
+  return equal(a, b, Infinity);
 }
 
 export function hasOwn (obj, key) {
