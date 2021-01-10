@@ -411,7 +411,7 @@ export function isMappable (collection, arrays = true) {
     (arrays && isArray(collection)) ||
     (arrays && isSet(collection)) ||
     isMap(collection) ||
-    collection && (typeof collection === 'object' || typeof collection === 'function')
+    collection && (isObject(collection, true) || isFunction(collection))
   );
 }
 
