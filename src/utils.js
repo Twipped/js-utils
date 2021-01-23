@@ -780,8 +780,17 @@ export function toPairs (input) {
   return input && Array.from(entries(input));
 }
 
-export function fromPairs (entries) {
-  return entries && entries.length && mapReduce(entries, ([ v, k ]) => [ v, k ]) || {};
+export function fromPairs (entries, mode = MAPMODE_OBJECT) {
+  switch (mode) {
+  case MAPMODE_OBJECT:
+    if (Object.fromEntries) return Object.fromEntries(entries);
+    return mapReduce(entries);
+  case MAPMODE_MAP: return new Map(entries);
+  case MAPMODE_SET: return new Set(entries.map(([ , v ]) => v));
+  case MAPMODE_ARRAY:
+  default:
+    return entries.map(([ , v ]) => v);
+  }
 }
 
 export function slice (collection, begin, end) {
