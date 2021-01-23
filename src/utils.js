@@ -157,7 +157,7 @@ export function isAll (...args) {
 }
 
 export function tableLookup (dict, def) {
-  const arr = Object.entries(dict);
+  const arr = entries(dict);
 
   return (tok) => {
     for (const [ key, value ] of arr) {
@@ -769,8 +769,15 @@ export function sorter (match) {
   };
 }
 
-export function toPairs (object) {
-  return object && Object.entries(object) || [];
+
+export function entries (collection) {
+  if (is(isArray, isSet, isMap)(collection)) return collection.entries();
+  if (isObject(collection, true)) return Object.entries(collection);
+  return nullIterator();
+}
+
+export function toPairs (input) {
+  return input && Array.from(entries(input));
 }
 
 export function fromPairs (entries) {
