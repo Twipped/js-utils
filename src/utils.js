@@ -433,6 +433,12 @@ export const MAPMODE_ARRAY  = 'ARRAY';
 export const MAPMODE_SET    = 'SET';
 export const MAPMODE_MAP    = 'MAP';
 export const MAPMODE_OBJECT = 'OBJECT';
+export const MAPMODE = {
+  [MAPMODE_ARRAY]: MAPMODE_ARRAY,
+  [MAPMODE_SET]: MAPMODE_SET,
+  [MAPMODE_MAP]: MAPMODE_MAP,
+  [MAPMODE_OBJECT]: MAPMODE_OBJECT,
+};
 
 export function mapMode (collection, strict) {
   if (isArray(collection)) return MAPMODE_ARRAY;
@@ -440,6 +446,10 @@ export function mapMode (collection, strict) {
   if (isMap(collection)) return MAPMODE_MAP;
   if (isObject(collection, strict)) return MAPMODE_OBJECT;
   return false;
+}
+
+export function mapTable (collection, table = {}) {
+  return (table[mapMode(collection)] || noop)();
 }
 
 export function faccimilate (collection, strict) {
