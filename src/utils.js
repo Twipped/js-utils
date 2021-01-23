@@ -1368,3 +1368,14 @@ export function timeout (fn, time) {
   const handle = setTimeout(fn, time);
   return () => clearTimeout(handle);
 }
+
+export function assert (ok, message) {
+  if (!ok) throw new TypeError(message);
+}
+
+assert.isObject      = (ok, message) => assert(isObject(ok), message);
+assert.isPlainObject = (ok, message) => assert(isObject(ok, true), message);
+assert.isString      = (ok, message) => assert(isString(ok), message);
+assert.isNumber      = (ok, message) => assert(isNumber(ok), message);
+assert.equal         = (a, b, message) => assert(shallowEqual(a, b), message);
+assert.deepEqual     = (a, b, message) => assert(deepEqual(a, b), message);
