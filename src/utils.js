@@ -2,6 +2,7 @@
 export { default as slugify } from './slugify';
 
 export function noop () {}
+export function* nullIterator () {}
 
 // htmlEscape copied from Sindre Sorhus' escape-goat
 export const htmlEscape = (input) => input
