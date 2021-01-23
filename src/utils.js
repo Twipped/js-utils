@@ -9,7 +9,20 @@ export const htmlEscape = (input) => input
   .replace(/"/g, '&quot;')
   .replace(/'/g, '&#39;')
   .replace(/</g, '&lt;')
-  .replace(/>/g, '&gt;');
+  .replace(/>/g, '&gt;')
+;
+
+export function stripIndent (input) {
+  if (Array.isArray(input)) return input.map(stripIndent).join('');
+  const match = input.match(/^[^\S\n]*(?=\S)/gm);
+  const indent = match && Math.min(...match.map((el) => el.length));
+  if (indent) {
+    const regexp = new RegExp(`^.{${indent}}`, 'gm');
+    input = input.replace(regexp, '');
+  }
+
+  return input;
+}
 
 export function wtf (msg, info) {
   if (info) console.error(info); // eslint-disable-line no-console
