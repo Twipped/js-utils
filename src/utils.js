@@ -127,7 +127,6 @@ const IS_LOOKUP = new Map([
   [ Boolean,   isBoolean   ],
   [ Map,       isMap       ],
   [ Set,       isSet       ],
-  [ Function,  isFunction  ],
   [ Date,      isDate      ],
   [ RegExp,    isRegExp    ],
   [ undefined, isUndefined ],
@@ -137,9 +136,9 @@ const IS_LOOKUP = new Map([
 
 export function is (...args) {
   args = args.flat(Infinity).map((a) =>
-    IS_LOOKUP.get(a)
-    || (isFunction(a) && a)
+    (isFunction(a) && a)
     || (isRegExp(a) && re(a))
+    || IS_LOOKUP.get(a)
     || equals(a),
   );
   if (args.length === 1) return (tok) => args[0](tok);
@@ -148,9 +147,9 @@ export function is (...args) {
 
 export function isAll (...args) {
   args = args.flat(Infinity).map((a) =>
-    IS_LOOKUP.get(a)
-    || (isFunction(a) && a)
+    (isFunction(a) && a)
     || (isRegExp(a) && re(a))
+    || IS_LOOKUP.get(a)
     || equals(a),
   );
   if (args.length === 1) return (tok) => args[0](tok);
