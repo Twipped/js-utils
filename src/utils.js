@@ -306,6 +306,10 @@ export function ucwords (input) {
   return input.replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.substr(1));
 }
 
+export function clone (input) {
+  return merge({}, input);
+}
+
 export function merge (...sources) {
   const result = {};
   for (const source of sources) {
