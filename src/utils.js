@@ -83,6 +83,7 @@ export function isDate          (input) { return input instanceof Date; }
 export function isRegExp        (input) { return input instanceof RegExp; }
 export function isIterable      (input) { return isNotUndefinedOrNull(input) && Symbol.iterator in Object(input); }
 export function isIterator      (input) { return isObject(input) && isFunction(input.next); }
+export function isPromise       (input) { return isObject(input) && isFunction(input.then); }
 export function isTrue          (input) { return input === true; }
 export function isTruthy        (input) { return !!input; }
 export function isFalsey        (input) { return  !input; }
