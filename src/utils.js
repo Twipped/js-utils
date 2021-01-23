@@ -80,12 +80,14 @@ export function isMap           (input) { return input instanceof Map; }
 export function isSet           (input) { return input instanceof Set; }
 export function isDate          (input) { return input instanceof Date; }
 export function isRegExp        (input) { return input instanceof RegExp; }
+export function isIterable      (input) { return isNotUndefinedOrNull(input) && Symbol.iterator in Object(input); }
+export function isIterator      (input) { return isObject(input) && isFunction(input.next); }
 export function isTrue          (input) { return input === true; }
 export function isTruthy        (input) { return !!input; }
 export function isFalsey        (input) { return  !input; }
 export function isFalse         (input) { return input === false; }
-export function isList (input) { return isArray(input) || isSet(input); }
-export function isDict (input) { return isObject(input) || isMap(input); }
+export function isList          (input) { return isArray(input) || isSet(input); }
+export function isDict          (input) { return isObject(input) || isMap(input); }
 export const isArray = Array.isArray;
 
 export function isNumeric (input) {
