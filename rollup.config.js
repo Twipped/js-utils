@@ -11,7 +11,7 @@ const bannerConfig = {
 export default [
 
   {
-    input: 'src/utils.js',
+    input: 'src/index.js',
     output: {
       file: 'dist/utils.cjs.js',
       format: 'cjs',
@@ -24,7 +24,7 @@ export default [
   },
 
   {
-    input: 'src/utils.js',
+    input: 'src/index.js',
     output: {
       file: 'dist/utils.esm.js',
       format: 'esm',
@@ -35,7 +35,7 @@ export default [
     ],
   },
   {
-    input: 'src/utils.js',
+    input: 'src/index.js',
     output: {
       file: 'dist/utils.esm.min.js',
       format: 'esm',
@@ -57,7 +57,7 @@ export default [
   },
 
   {
-    input: 'src/utils.js',
+    input: 'src/index.js',
     output: {
       file: 'dist/utils.browser.js',
       format: 'umd',
