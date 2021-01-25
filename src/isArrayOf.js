@@ -17,7 +17,7 @@ import { allBy, anyBy } from './anyBy';
 
 export function isArrayOf (...args) {
   const predicate = is(...args);
-  return (tok) => (isArray(tok) ? allBy(tok, predicate) : predicate(tok));
+  return (tok) => (isArray(tok) && allBy(tok, predicate));
 }
 export function isArrayOfStrings    (input) { return allBy(input, isString); }
 export function isArrayOfNumbers    (input) { return allBy(input, isNumber); }
