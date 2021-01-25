@@ -450,22 +450,6 @@ export function findIndex (collection, predicate) {
   // no default
   }
 
-  // received a Map
-  if (isMap(collection) || isObject(collection, true)) {
-    let i = 0;
-    for (const [ key, value ] of entries(collection)) {
-      if (predicate(value, key, i++)) return key;
-    }
-    return false;
-  }
-
-  if (isArray(collection) || isSet(collection) || isIterable(collection)) {
-    for (const [ k, v ] of entries(collection)) {
-      if (predicate(v, k, k)) return k;
-    }
-    return false;
-  }
-
 }
 
 export function omit (collection, predicate) {
