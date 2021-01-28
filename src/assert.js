@@ -10,6 +10,7 @@ export function assert (ok, message) {
   if (!ok) throw new TypeError(message);
 }
 
+assert.fail          = (message) => { throw new TypeError(message); };
 assert.isArray       = (ok, message) => assert(isArray(ok), message);
 assert.isObject      = (ok, message) => assert(isObject(ok), message);
 assert.isPlainObject = (ok, message) => assert(isObject(ok, true), message);
