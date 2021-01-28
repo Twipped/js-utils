@@ -8,6 +8,15 @@ const bannerConfig = {
   file: join(__dirname, 'LICENSE.txt'),
 };
 
+const external = [
+  'crypto',
+  'stream',
+  'fs',
+  'stream',
+  'path',
+  'util',
+];
+
 export default [
 
   {
@@ -18,9 +27,12 @@ export default [
       exports: 'named',
     },
     plugins: [
-      resolve(),
+      resolve({
+        preferBuiltins: true,
+      }),
       banner(bannerConfig),
     ],
+    external,
   },
 
   {
@@ -30,9 +42,12 @@ export default [
       format: 'esm',
     },
     plugins: [
-      resolve(),
+      resolve({
+        preferBuiltins: true,
+      }),
       banner(bannerConfig),
     ],
+    external,
   },
   {
     input: 'src/index.js',
@@ -41,7 +56,9 @@ export default [
       format: 'esm',
     },
     plugins: [
-      resolve(),
+      resolve({
+        preferBuiltins: true,
+      }),
       terser({
         output: {
           comments: false,
@@ -54,6 +71,7 @@ export default [
       }),
       banner(bannerConfig),
     ],
+    external,
   },
 
   {
@@ -65,7 +83,9 @@ export default [
       name: 'TwippedUtils',
     },
     plugins: [
-      resolve(),
+      resolve({
+        preferBuiltins: true,
+      }),
       babel({
         exclude: 'node_modules/**',
         presets: [
@@ -77,5 +97,6 @@ export default [
       } }),
       banner(bannerConfig),
     ],
+    external,
   },
 ];
