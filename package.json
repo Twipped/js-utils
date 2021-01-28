@@ -14,7 +14,7 @@
     "start": "npm run lint && npm run clean && npm run build"
   },
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=12.10.0"
   },
   "author": "Jocelyn Badgley <joc@twipped.com> (http://twipped.com)",
   "license": "MIT",
