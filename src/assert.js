@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 
 import {
   isArray,
@@ -5,14 +6,24 @@ import {
   isNumber,
   isString,
 } from './isType';
+import { noop } from './functions';
 
-export function assert (ok, message) {
-  if (!ok) throw new TypeError(message);
+export function assert (ok, message, ...args) {
+  if (ok) return;
+
+  if (args.length) {
+    let argIndex = 0;
+    message = message.replace(/%s/g, () => args[argIndex++]);
+  }
+
+  const error = new Error('Assertion Failed: \n' + message);
+  error.framesToPop = 1; // ignore the assert call itself.
+  throw error;
 }
 
-assert.fail          = (message) => { throw new TypeError(message); };
-assert.isArray       = (ok, message) => assert(isArray(ok), message);
-assert.isObject      = (ok, message) => assert(isObject(ok), message);
-assert.isPlainObject = (ok, message) => assert(isObject(ok, true), message);
-assert.isString      = (ok, message) => assert(isString(ok), message);
-assert.isNumber      = (ok, message) => assert(isNumber(ok), message);
+assert.fail          = (...args) => assert(false, ...args);
+assert.isArray       = (ok, ...args) => assert(isArray(ok), ...args);
+assert.isObject      = (ok, ...args) => assert(isObject(ok), ...args);
+assert.isPlainObject = (ok, ...args) => assert(isObject(ok, true), ...args);
+assert.isString      = (ok, ...args) => assert(isString(ok), ...args);
+assert.isNumber      = (ok, ...args) => assert(isNumber(ok), ...args);
