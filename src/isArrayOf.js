@@ -13,35 +13,48 @@ import {
   isTruthy,
   isFalsey,
 } from './isType';
-import { allBy, anyBy } from './anyBy';
 
 export function isArrayOf (...args) {
   const predicate = is(...args);
-  return (tok) => (isArray(tok) && allBy(tok, predicate));
+  return (tok) => {
+    if (!isArray(tok)) return false;
+    for (const item of tok) {
+      if (!predicate(item)) return false;
+    }
+    return true;
+  };
 }
-export function isArrayOfStrings    (input) { return allBy(input, isString); }
-export function isArrayOfNumbers    (input) { return allBy(input, isNumber); }
-export function isArrayOfBooleans   (input) { return allBy(input, isBoolean); }
-export function isArrayOfObjects    (input) { return allBy(input, isObject); }
-export function isArrayOfMappables  (input) { return allBy(input, isMappable); }
-export function isArrayOfPrimatives (input) { return allBy(input, isPrimitive); }
-export function isArrayOfFunctions  (input) { return allBy(input, isFunction); }
-export function isArrayOfRegEx      (input) { return allBy(input, isRegExp); }
-export function isArrayOfTruthy     (input) { return allBy(input, isTruthy); }
-export function isArrayOfFalsey     (input) { return allBy(input, isFalsey); }
+export const isArrayofArrays =     isArrayOf(isArray);
+export const isArrayOfStrings =    isArrayOf(isString);
+export const isArrayOfNumbers =    isArrayOf(isNumber);
+export const isArrayOfBooleans =   isArrayOf(isBoolean);
+export const isArrayOfObjects =    isArrayOf(isObject);
+export const isArrayOfMappables =  isArrayOf(isMappable);
+export const isArrayOfPrimatives = isArrayOf(isPrimitive);
+export const isArrayOfFunctions =  isArrayOf(isFunction);
+export const isArrayOfRegEx =      isArrayOf(isRegExp);
+export const isArrayOfTruthy =     isArrayOf(isTruthy);
+export const isArrayOfFalsey =     isArrayOf(isFalsey);
 
 export function contains (...args) {
   const predicate = is(...args);
-  return (tok) => (isArray(tok) ? anyBy(tok, predicate) : predicate(tok));
+  return (tok) => {
+    if (!isArray(tok)) predicate(tok);
+    for (const item of tok) {
+      if (predicate(item)) return true;
+    }
+    return false;
+  };
 }
-export function containsStrings    (input) { return anyBy(input, isString); }
-export function containsNumbers    (input) { return anyBy(input, isNumber); }
-export function containsBooleans   (input) { return anyBy(input, isBoolean); }
-export function containsObjects    (input) { return anyBy(input, isObject); }
-export function containsMappables  (input) { return anyBy(input, isMappable); }
-export function containsPrimatives (input) { return anyBy(input, isPrimitive); }
-export function containsFunctions  (input) { return anyBy(input, isFunction); }
-export function containsRegEx      (input) { return anyBy(input, isRegExp); }
-export function containsTruthy     (input) { return anyBy(input, isTruthy); }
-export function containsFalsey     (input) { return anyBy(input, isFalsey); }
+export const containsArrays =     contains(isArray);
+export const containsStrings =    contains(isString);
+export const containsNumbers =    contains(isNumber);
+export const containsBooleans =   contains(isBoolean);
+export const containsObjects =    contains(isObject);
+export const containsMappables =  contains(isMappable);
+export const containsPrimatives = contains(isPrimitive);
+export const containsFunctions =  contains(isFunction);
+export const containsRegEx =      contains(isRegExp);
+export const containsTruthy =     contains(isTruthy);
+export const containsFalsey =     contains(isFalsey);
 

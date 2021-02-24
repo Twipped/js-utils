@@ -13,8 +13,6 @@ import {
   isSet,
   isUndefined,
 } from './isType';
-import { isEqualTo } from './equality';
-import { anyBy, allBy } from './anyBy';
 
 export const isa = (constructor) => (input) => input instanceof constructor;
 
@@ -33,15 +31,34 @@ const IS_LOOKUP = new Map([
   [ false,     isFalsey    ],
 ]);
 
+function compare (a, b) {
+  if (a === b) return true;
+  if (isNaN(a) && isNaN(b)) return true;
+  if ((!a || !b) || typeof a !== typeof b) return false;
+
+  if (isRegExp(a) && isRegExp(b)) return a.source === b.source && a.flags === b.flags;
+
+  if (a.valueOf !== Object.prototype.valueOf) return a.valueOf() === b.valueOf();
+  if (a.toString !== Object.prototype.toString) return a.toString() === b.toString();
+  return false;
+}
+
 export function is (...args) {
   args = args.flat(Infinity).map((a) =>
     (isFunction(a) && a)
     || (isRegExp(a) && re(a))
     || IS_LOOKUP.get(a)
-    || isEqualTo(a),
+    || ((b) => compare(a, b)),
   );
+
   if (args.length === 1) return (tok) => args[0](tok);
-  return (tok) => anyBy(args, (check) => check(tok));
+
+  return (tok) => {
+    for (const check of args) {
+      if (check(tok)) return true;
+    }
+    return false;
+  };
 }
 
 export function isAll (...args) {
@@ -49,10 +66,17 @@ export function isAll (...args) {
     (isFunction(a) && a)
     || (isRegExp(a) && re(a))
     || IS_LOOKUP.get(a)
-    || isEqualTo(a),
+    || ((b) => compare(a, b)),
   );
+
   if (args.length === 1) return (tok) => args[0](tok);
-  return (tok) => allBy(args, (check) => check(tok));
+
+  return (tok) => {
+    for (const check of args) {
+      if (!check(tok)) return false;
+    }
+    return true;
+  };
 }
 
 export function re (pattern) {
