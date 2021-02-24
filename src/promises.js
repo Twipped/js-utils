@@ -1,5 +1,5 @@
 
-import { assert } from './assert';
+import { assert, warning } from './assert';
 import {
   mapMode,
   fromPairs,
@@ -113,4 +113,16 @@ export async function preduce (collection, predicate, initial = null) {
   }
 
   return result;
+}
+
+export function catcher (fn) {
+  try {
+    const res = fn();
+    if (res && typeof res.then === 'function') {
+      return res.then(noop, (e) => warning(false, e));
+    }
+    return res;
+  } catch (e) {
+    warning(false, e);
+  }
 }
