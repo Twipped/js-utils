@@ -13,6 +13,10 @@ import {
 
 export function noop () {}
 
+export function r (input, ...args) {
+  return isFunction(input) ? r(input(...args), args) : input;
+}
+
 export function iteratee (match) {
   if (isUndefinedOrNull(match)) return (v) => v;
 
