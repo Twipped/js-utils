@@ -25,6 +25,11 @@ export function cl (...args) {
   return args.flat(Infinity).filter(Boolean).join(' ');
 }
 
+export function clRemap (input, classMap) {
+  if (typeof input === 'string') input = input.split(' ');
+  if (!Array.isArray(input)) return '';
+  return input.flat(Infinity).map((c) => classMap[c] || c).filter(Boolean).join(' ');
+}
 
 export function lc (input) {
   return typeof input === 'string' ? input.toLowerCase() : input;
