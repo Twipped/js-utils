@@ -15,6 +15,7 @@ import {
   isIterable,
   isMappable,
 } from './isType';
+import { isArrayOfStrings } from './isArrayOf';
 import { assert } from './assert';
 import { iteratee, sorter, noop } from './functions';
 import { entries, nullIterator } from './iterators';
@@ -496,6 +497,14 @@ export function pick (collection, predicate) {
   }, {});
 }
 
+const isMarshalMap = (input) => {
+  if (!isObject(input, true)) return false;
+  for (const v of Object.values(input)) {
+    if (!isArrayOfStrings(v)) return false;
+  }
+  return true;
+};
+
 export function marshal (collection, predicate) {
   if (!collection) return {};
 
@@ -521,9 +530,24 @@ export function marshal (collection, predicate) {
     },
   };
 
+  if (isMarshalMap(predicate)) {
+    each(collection, (value, key) => {
+      let matched = false;
+      each(predicate, (keyset, name) => {
+        if (keyset.includes(key)) {
+          marshallers[mode](name, value, key);
+          matched = true;
+        }
+      });
+      if (!matched) {
+        marshallers[mode](key, value, key);
+      }
+    });
+  }
+
   if (isFunction(predicate)) {
     each(collection, (value, key, index) => {
-      marshallers[mode](predicate(value, key, index), value, key);
+      marshallers[mode](predicate(value, key, index) ?? key, value, key);
     });
     return buckets;
   }
@@ -532,7 +556,7 @@ export function marshal (collection, predicate) {
     predicate = [ predicate ];
   }
 
-  if (!isArray(predicate)) throw new Error('marshal requires a function, a string or and array of strings for the second argument');
+  if (!isArray(predicate)) throw new Error('marshal requires a function, a string, an array of strings, or an object map of string arrays for the second argument');
   const targets = new Set(predicate);
   each(collection, (value, key) => {
     marshallers[mode](targets.has(key) ? 0 : 1, value, key);
