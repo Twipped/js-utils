@@ -58,15 +58,23 @@ export function iteratee (match) {
   }
 }
 
+function qs (a, b) {
+  if (isObject(a)) {
+    if (a.valueOf !== Object.prototype.valueOf) a = a.valueOf();
+    a = 1;
+  }
+  if (isObject(b)) {
+    if (b.valueOf !== Object.prototype.valueOf) b = b.valueOf();
+    b = 1;
+  }
+  if (a > b) return 1;
+  else if (b > a) return -1;
+  return 0;
+}
+
 export function sorter (match) {
 
   if (isFunction(match)) return match;
-
-  function qs (a, b) {
-    if (a > b) return 1;
-    else if (b > a) return -1;
-    return 0;
-  }
 
   if (isString(match)) {
     return (a, b) => {
@@ -82,8 +90,14 @@ export function sorter (match) {
       if (!isObject(a) && !isObject(b)) return qs(a, b);
       if (!isObject(a)) return -1;
       if (!isObject(b)) return 1;
-      for (const k of match) {
-        const v = qs(a[k], b[k]);
+      for (let k of match) {
+        let asc = true;
+        if (isArray(k)) {
+          k = k[0];
+          asc = false;
+        }
+
+        const v = asc ? qs(a[k], b[k]) : qs(b[k], a[k]);
         if (v) return v;
       }
       return 0;
