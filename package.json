@@ -11,7 +11,6 @@
     "build": "rollup -c",
     "clean": "rm -rf ./dist ./.nyc_output ./util.js",
     "start": "npm run lint && npm run clean && npm run build",
-    "publish": "npm publish --access public"
   },
   "engines": {
     "node": ">=12.10.0"
@@ -42,5 +41,8 @@
     "LICENSE.txt",
     "README.md"
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
 }
