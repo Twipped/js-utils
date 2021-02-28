@@ -7,11 +7,11 @@
   "scripts": {
     "test": "tap -R base --no-coverage tests",
     "cover": "tap -R terse --coverage tests",
-    "exe": "babel-node --presets @babel/env",
     "lint": "eslint './{src,tests}/**/*.{js,jsx}' --fix",
     "build": "rollup -c",
     "clean": "rm -rf ./dist ./.nyc_output ./util.js",
-    "start": "npm run lint && npm run clean && npm run build"
+    "start": "npm run lint && npm run clean && npm run build",
+    "publish": "npm publish --access public"
   },
   "engines": {
     "node": ">=12.10.0"
@@ -25,12 +25,10 @@
     "@rollup/plugin-node-resolve": "~11.1.0",
     "babel-eslint": "~10.1.0",
     "babel-node": "0.0.1-security",
-    "date-fns": "~2.16.1",
     "eslint": "~7.18.0",
     "eslint-config-twipped": "~4.0.0",
     "eslint-plugin-node": "~11.1.0",
     "eslint-plugin-promise": "~4.2.1",
-    "marky": "~1.2.1",
     "rollup": "~2.38.0",
     "rollup-plugin-babel": "~4.4.0",
     "rollup-plugin-banner": "~0.2.1",

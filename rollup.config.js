@@ -30,6 +30,19 @@ export default [
       resolve({
         preferBuiltins: true,
       }),
+      babel({
+        exclude: 'node_modules/**',
+        presets: [
+          [ "@babel/preset-env", {
+            modules: false,
+            useBuiltIns: "usage",
+            corejs: { version: 3, shippedProposals: true },
+            targets: {
+              node: '12',
+            }
+          } ],
+        ],
+      }),
       banner(bannerConfig),
     ],
     external,
@@ -45,6 +58,19 @@ export default [
       resolve({
         preferBuiltins: true,
       }),
+      babel({
+        exclude: 'node_modules/**',
+        presets: [
+          [ "@babel/preset-env", {
+            modules: false,
+            useBuiltIns: "usage",
+            corejs: { version: 3, shippedProposals: true },
+            targets: {
+              node: '12',
+            }
+          } ],
+        ],
+      }),
       banner(bannerConfig),
     ],
     external,
@@ -58,6 +84,16 @@ export default [
     plugins: [
       resolve({
         preferBuiltins: true,
+      }),
+      babel({
+        exclude: 'node_modules/**',
+        presets: [
+          [ "@babel/preset-env", {
+            modules: false,
+            useBuiltIns: "usage",
+            corejs: { version: 3, shippedProposals: true },
+          } ],
+        ],
       }),
       terser({
         output: {
@@ -89,7 +125,11 @@ export default [
       babel({
         exclude: 'node_modules/**',
         presets: [
-          '@babel/env',
+          [ "@babel/preset-env", {
+            modules: false,
+            useBuiltIns: "usage",
+            corejs: { version: 3, shippedProposals: true },
+          } ],
         ],
       }),
       terser({ output: {
