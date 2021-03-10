@@ -543,6 +543,7 @@ export function marshal (collection, predicate) {
         marshallers[mode](key, value, key);
       }
     });
+    return buckets;
   }
 
   if (isFunction(predicate)) {
