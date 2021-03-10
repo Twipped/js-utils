@@ -17,6 +17,10 @@ export function r (input, ...args) {
   return isFunction(input) ? r(input(...args), args) : input;
 }
 
+export function not (fn) {
+  return (...args) => !fn(...args);
+}
+
 export function iteratee (match) {
   if (isUndefinedOrNull(match)) return (v) => v;
 
