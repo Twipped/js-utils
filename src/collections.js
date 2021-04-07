@@ -357,6 +357,9 @@ export function sort (collection, predicate) {
 }
 
 export function uniq (collection, predicate = null) {
+
+  if (!predicate && isArray(collection)) return [ ...new Set(collection) ];
+
   if (predicate === null) {
     predicate = (v) => v;
   } else {
