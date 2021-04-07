@@ -1,5 +1,29 @@
 
 
+2.1.0 / 2021-04-07
+==================
+
+- Fixes:
+  - `entries` now provides an iterator for objects instead of an array
+  - Added optimization to `uniq` when doing a simple array reduction
+  - `marshall` was really messing up with unmapped keys. Now puts them into a catchall bucket defined by third argument.
+  - rewrote `first` to lean on `entries` for faster speed
+  - Fixed issues with `intersect` and `difference`
+  - `gt` and `lt` now coerce undefined and null to 0 and attempt to coerce objects
+
+- New Functions:
+  - `camelToHyphen`
+  - `camelToSnake`
+  - `camelToUpperSnake`
+  - qsa
+  - hasClassName
+  - addClassName
+  - removeClassName
+  - distance
+  - includes
+  - chain
+  - series
+
 2.0.0 / 2021-02-28
 ==================
 
