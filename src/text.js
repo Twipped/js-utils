@@ -54,6 +54,18 @@ export function ucwords (input) {
   return input.replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.substr(1));
 }
 
+var rUpper = /([A-Z])/g;
+export function camelToHyphen (input) {
+  return input.replace(rUpper, '-$1').toLowerCase();
+}
+
+export function camelToSnake (input) {
+  return input.replace(rUpper, '_$1').toLowerCase();
+}
+
+export function camelToUpperSnake (input) {
+  return input.replace(rUpper, '_$1').toUpperCase();
+}
 
 export function jsonSoftParse (input, fallback) {
   if (typeof input !== 'string') return input;
