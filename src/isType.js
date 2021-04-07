@@ -86,6 +86,10 @@ export function falsey (value) {
 }
 
 export function gt (a, b) {
+  if (isUndefinedOrNull(a)) a = 0;
+  if (isUndefinedOrNull(b)) b = 0;
+  if (isObject(a) && a.valueOf !== Object.prototype.valueOf) a = a.valueOf();
+  if (isObject(b) && b.valueOf !== Object.prototype.valueOf) b = b.valueOf();
   if ((isNumber(a) && isNumber(b))) return a > b;
   if (isNumeric(b)) return Number(a) > Number(b);
   if (isString(b)) return String(a) > String(b);
@@ -93,6 +97,10 @@ export function gt (a, b) {
 }
 
 export function lt (a, b) {
+  if (isUndefinedOrNull(a)) a = 0;
+  if (isUndefinedOrNull(b)) b = 0;
+  if (isObject(a) && a.valueOf !== Object.prototype.valueOf) a = a.valueOf();
+  if (isObject(b) && b.valueOf !== Object.prototype.valueOf) b = b.valueOf();
   if ((isNumber(a) && isNumber(b))) return a < b;
   if (isNumeric(b)) return Number(a) < Number(b);
   if (isString(b)) return String(a) < String(b);
