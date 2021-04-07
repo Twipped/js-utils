@@ -249,18 +249,18 @@ export function arrayify (input) {
   return [ input ];
 }
 
-export function first (input, count = 1) {
-  if (count === 1) {
-    if (isArray(input) || isString(input)) return input[0];
-    if (isSet(input) || isObject(input)) for (const v of input) return v;
-    if (isMap(input)) for (const [ , v ] of input) return v;
-    return;
-  }
+export function first (input, count = null) {
+  const itr = entries(input);
+  if (!itr.next) return undefined;
+  if (count === null) return itr.next()?.value[1];
 
-  if (isArray(input) || isString(input)) return input.slice(0, count);
-  if (isSet(input)) return Array.from(input).slice(0, count);
-  if (isObject(input)) return Object.values(input).slice(0, count);
-  if (isMap(input)) return Array.from(input.values()).slice(0, count);
+  const result = [];
+  while (result.length < count) {
+    const { value, done } = itr.next();
+    if (done) break;
+    result.push(value[1]);
+  }
+  return result;
 }
 
 export function last (input, count = 1) {
