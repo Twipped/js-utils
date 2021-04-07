@@ -219,11 +219,22 @@ export function values (input) {
 }
 
 export function intersect (...arrays) {
-  return reduce(arrays, (a, b) => a.filter((c) => b.includes(c)));
+  return uniq(arrays.reduce(
+    (a, b) => filter(a,
+      (v) => includes(b, v),
+    ),
+  ));
 }
 
+
+
 export function difference (...arrays) {
-  return reduce(arrays, (a, b) => a.filter((c) => !b.includes(c)));
+  return uniq(arrays.reduce(
+    (a, b) => filter(a,
+      (c) => !includes(b, c),
+    ),
+  ));
+}
 }
 
 export function arrayify (input) {
