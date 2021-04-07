@@ -16,3 +16,4 @@ export { default as slugify } from './slugify';
 export * from './assert';
 export * from './is';
 export * from './isArrayOf';
+export * from './dom';
