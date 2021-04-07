@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { mapMode, isIterator, isIterable, isGenerator, ensureIterable, MAPMODE, map } from '../src/index';
+import { mapMode, isIterator, isIterable, isGenerator, ensureIterable, MAPMODE, map } from '../dist/utils.cjs.js';
 
 const array = [ 1, 2, 3 ];
 const object = { a: 1, b: 2, c: 3 };

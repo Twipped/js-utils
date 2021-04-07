@@ -5,9 +5,9 @@ module.exports = exports = {
     // [ "@babel/plugin-proposal-class-properties", { loose: true } ],
   ],
   presets: [
-    [ "@babel/preset-env", {
+    [ '@babel/preset-env', {
       modules: false,
-      useBuiltIns: "usage",
+      useBuiltIns: 'usage',
       corejs: { version: 3, shippedProposals: true },
     } ],
   ],
