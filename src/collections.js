@@ -516,7 +516,7 @@ const isMarshalMap = (input) => {
   return true;
 };
 
-export function marshal (collection, predicate) {
+export function marshal (collection, predicate, rest = 'UNKNOWN') {
   if (!collection) return {};
 
   const mode = mapMode(collection);
@@ -551,7 +551,7 @@ export function marshal (collection, predicate) {
         }
       });
       if (!matched) {
-        marshallers[mode](key, value, key);
+        marshallers[mode](rest, value, key);
       }
     });
     return buckets;
