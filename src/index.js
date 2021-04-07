@@ -7,6 +7,7 @@ export * from './functions';
 export * from './iterators';
 export * from './timers';
 export * from './collections';
+export * from './convert';
 export * from './any';
 export * from './anyBy';
 export * from './anyOf';
