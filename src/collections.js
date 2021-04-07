@@ -235,6 +235,13 @@ export function difference (...arrays) {
     ),
   ));
 }
+
+export function includes (collection, value) {
+  if (isArray(collection)) return collection.includes(value);
+  if (isSet(collection)) return collection.has(value);
+  if (isMap(collection)) return Array.from(collection.values()).includes(value);
+  if (isObject(collection)) return Object.values(collection).includes(value);
+  return false;
 }
 
 export function arrayify (input) {
