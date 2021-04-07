@@ -132,3 +132,20 @@ export function sorter (match) {
     return 0;
   };
 }
+
+export function chain (...funcs) {
+  return funcs
+    .filter(isFunction)
+    .reduce((prev, next) => function chainedFunction (...args) {
+      next.apply(this, prev.apply(this, args));
+    }) || noop;
+}
+
+export function series (...funcs) {
+  funcs = funcs.filter(isFunction);
+  return function seriesFunction (...args) {
+    for (const fn of funcs) {
+      fn(...args);
+    }
+  };
+}
