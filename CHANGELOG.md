@@ -1,4 +1,21 @@
 
+3.0.0 / 2021-04-19
+==================
+
+- Breaking Changes
+  - isArrayOfArrays is now correctly capitalized
+  - `assert.fail` is now `fail`
+  - `assert.isArray` is now `assertIsArray`
+  - `assert.isObject` is now `assertIsObject`
+  - `assert.isPlainObject` is now `assertIsPlainObject`
+  - `assert.isString` is now `assertIsString`
+  - `assert.isNumber` is now `assertIsNumber`
+
+- isArrayOf functions should now be tree shaken properly.
+
+- New Functions
+  - `chunkIterable` Takes an iterable and clusters its output into arrays of a provided length. Defaults to pairs
+  - `median` Provides the median average of a list of values.
 
 2.1.0 / 2021-04-07
 ==================
