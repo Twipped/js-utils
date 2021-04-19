@@ -21,12 +21,12 @@ export function assert (ok, message, ...args) {
   throw error;
 }
 
-assert.fail          = (...args) => assert(false, ...args);
-assert.isArray       = (ok, ...args) => assert(isArray(ok), ...args);
-assert.isObject      = (ok, ...args) => assert(isObject(ok), ...args);
-assert.isPlainObject = (ok, ...args) => assert(isObject(ok, true), ...args);
-assert.isString      = (ok, ...args) => assert(isString(ok), ...args);
-assert.isNumber      = (ok, ...args) => assert(isNumber(ok), ...args);
+export const fail                = (...args) => assert(false, ...args);
+export const assertIsArray       = (ok, ...args) => assert(isArray(ok), ...args);
+export const assertIsObject      = (ok, ...args) => assert(isObject(ok), ...args);
+export const assertIsPlainObject = (ok, ...args) => assert(isObject(ok, true), ...args);
+export const assertIsString      = (ok, ...args) => assert(isString(ok), ...args);
+export const assertIsNumber      = (ok, ...args) => assert(isNumber(ok), ...args);
 
 export const warning = process.env.NODE_ENV === 'production'
   ? (ok, ...args) => {
