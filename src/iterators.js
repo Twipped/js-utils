@@ -30,3 +30,17 @@ export function entries (collection) {
   }
   return nullIterator();
 }
+
+export function* chunkIterable (input, size = 2) {
+  const iterator = input[Symbol.iterator]();
+  let chnk = [];
+  let next;
+  while (!(next = iterator.next()).done) {
+    chnk.push(next.value);
+    if (chnk.length === size) {
+      yield chnk;
+      chnk = [];
+    }
+  }
+  return chnk;
+}
