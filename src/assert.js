@@ -5,8 +5,8 @@ import {
   isObject,
   isNumber,
   isString,
-} from './isType';
-import { noop } from './functions';
+} from './isType.js';
+import { noop } from './functions.js';
 
 export function assert (ok, message, ...args) {
   if (ok) return;

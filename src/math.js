@@ -1,6 +1,6 @@
 
-import { isDate } from './isType';
-import { flatten } from './collections';
+import { isDate } from './isType.js';
+import { flatten } from './collections.js';
 
 export function clamp (value, minv = -Infinity, maxv = Infinity) {
   if (value === undefined || value === null || value === '') return null;

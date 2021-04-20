@@ -1,8 +1,8 @@
 
-import { uc } from './text';
-import { isFunction } from './isType';
-import { anyBy, allBy } from './anyBy';
-import { isEqualTo } from './equality';
+import { uc } from './text.js';
+import { isFunction } from './isType.js';
+import { anyBy, allBy } from './anyBy.js';
+import { isEqualTo } from './equality.js';
 
 export function anyOf (...args) {
   args = args.flat(Infinity).map(uc);

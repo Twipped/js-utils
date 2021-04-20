@@ -5,8 +5,8 @@ import {
   MAPMODE_SET,
   MAPMODE_MAP,
   MAPMODE_OBJECT,
-} from './collections';
-import { isRegExp, sizeOf } from './isType';
+} from './collections.js';
+import { isRegExp, sizeOf } from './isType.js';
 
 export function isEqualTo (value) {
   return (tok) => equal(value, tok);

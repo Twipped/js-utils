@@ -4,6 +4,7 @@
   "description": "A collection of commonly used utility functions",
   "main": "dist/utils.cjs.js",
   "module": "dist/utils.esm.js",
+  "type": "module",
   "scripts": {
     "test": "tap -R base --no-coverage tests",
     "cover": "tap -R terse --coverage tests",

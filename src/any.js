@@ -1,6 +1,6 @@
 
-import { truthy } from './isType';
-import { flatten } from './collections';
+import { truthy } from './isType.js';
+import { flatten } from './collections.js';
 
 export function all (...args) {
   let input;

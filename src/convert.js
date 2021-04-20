@@ -1,6 +1,6 @@
 
-import { assert } from './assert';
-import distanceUnit from './convert-distances';
+import { assert } from './assert.js';
+import distanceUnit from './convert-distances.js';
 
 function convert (unitSet, value, from, to = 'meters') {
   from = distanceUnit(from);

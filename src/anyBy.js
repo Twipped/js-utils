@@ -5,9 +5,9 @@ import {
   isSet,
   isMap,
   isObject,
-} from './isType';
-import { iteratee } from './functions';
-import { entries } from './iterators';
+} from './isType.js';
+import { iteratee } from './functions.js';
+import { entries } from './iterators.js';
 
 export function allBy (collection, predicate = null) {
   if (!collection) return false;

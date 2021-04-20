@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { pmap, pdelay, prace, preduce } from '../dist/utils.cjs.js';
+import { pmap, pdelay, prace, preduce } from '../src/index.js';
 
 const array = [ 100, 110, 70, 10, 11, 150, 220, 250 ];
 

@@ -1,12 +1,12 @@
 
-import { assert, warning } from './assert';
+import { assert, warning } from './assert.js';
 import {
   mapMode,
   fromPairs,
-} from './collections';
-import { entries } from './iterators';
-import { iteratee } from './functions';
-import { defer, timeout } from './timers';
+} from './collections.js';
+import { entries } from './iterators.js';
+import { iteratee } from './functions.js';
+import { defer, timeout } from './timers.js';
 
 export function pdelay (delay) {
   const fn = (passthru) => new Promise((resolve) => timeout(() => resolve(passthru), delay));

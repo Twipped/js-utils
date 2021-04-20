@@ -12,7 +12,7 @@ import {
   isMap,
   isSet,
   isUndefined,
-} from './isType';
+} from './isType.js';
 
 export const isa = (constructor) => (input) => input instanceof constructor;
 

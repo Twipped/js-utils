@@ -6,7 +6,7 @@ import {
   isObject,
   isIterator,
   isIterable,
-} from './isType';
+} from './isType.js';
 
 export function* nullIterator () {}
 

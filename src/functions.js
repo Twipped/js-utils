@@ -9,7 +9,7 @@ import {
   isNumber,
   isString,
   isPrimitive,
-} from './isType';
+} from './isType.js';
 
 export function noop () {}
 

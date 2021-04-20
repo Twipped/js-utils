@@ -1,7 +1,6 @@
 
-const tap = require('tap');
-const { intersect, difference, uniq, first } = require('../dist/utils.cjs.js');
-
+import tap from 'tap';
+import { intersect, difference, uniq, first, map } from '../src/index.js';
 
 tap.test('uniq array', async (t) => {
 

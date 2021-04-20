@@ -14,11 +14,11 @@ import {
   isIterator,
   isIterable,
   isMappable,
-} from './isType';
-import { isArrayOfStrings } from './isArrayOf';
-import { assert } from './assert';
-import { iteratee, sorter, noop } from './functions';
-import { entries, nullIterator } from './iterators';
+} from './isType.js';
+import { isArrayOfStrings } from './isArrayOf.js';
+import { assert } from './assert.js';
+import { iteratee, sorter, noop } from './functions.js';
+import { entries, nullIterator } from './iterators.js';
 
 export function hasOwn (obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);

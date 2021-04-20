@@ -1,5 +1,5 @@
-
-import { iteratee } from './functions';
+/* globals document */
+import { iteratee } from './functions.js';
 
 export function qsa (el, selector, predicate) {
   if (typeof el === 'string') {
@@ -13,7 +13,7 @@ export function qsa (el, selector, predicate) {
 
 export function hasClassName (el, className) {
   var eClassName = el.className;
-  return (eClassName.length > 0 && (eClassName === className || new RegExp("(^|\\s)" + className + "(\\s|$)").test(eClassName)));
+  return (eClassName.length > 0 && (eClassName === className || new RegExp(/(^|\\s)/ + className + /(\\s|$)/).test(eClassName)));
 }
 
 export function addClassName (el, className) {
@@ -21,5 +21,5 @@ export function addClassName (el, className) {
 }
 
 export function removeClassName (el, className) {
-  el.className = el.className.replace(new RegExp("(^|\\s+)" + className + "(\\s+|$)"), ' ').trim();
+  el.className = el.className.replace(new RegExp(/(^|\\s+)/ + className + /(\\s+|$)/), ' ').trim();
 }

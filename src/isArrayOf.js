@@ -1,5 +1,5 @@
 
-import { is } from './is';
+import { is } from './is.js';
 import {
   isArray,
   isString,
@@ -12,7 +12,7 @@ import {
   isRegExp,
   isTruthy,
   isFalsey,
-} from './isType';
+} from './isType.js';
 
 export function isArrayOf (...args) {
   const predicate = is(...args);
