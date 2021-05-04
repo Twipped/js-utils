@@ -259,6 +259,27 @@ export function last (input, count = 1) {
   if (isMap(input)) return Array.from(input.values()).slice(-count);
 }
 
+export function join (collection, delimiter) {
+  if (isString(delimiter) || isNumber(delimiter)) {
+    if (isArray(collection) || isMap(collection) || isSet(collection)) return Array.from(collection.values()).join(delimiter);
+    if (isObject(collection, true)) return Object.values(collection).join(delimiter);
+    if (isString(collection)) return collection.split('').join(delimiter);
+    return '';
+  }
+
+  if (!(Symbol.iterator in collection)) return collection;
+
+  const iterator = collection[Symbol.iterator]();
+  const result = [];
+  let next;
+  while ((next = iterator.next())) {
+    result.push(next.value);
+    if (next.done) break;
+    result.push(delimiter);
+  }
+  return result;
+}
+
 export function toPairs (input) {
   return input && Array.from(entries(input));
 }
