@@ -31,6 +31,35 @@ export function entries (collection) {
   return nullIterator();
 }
 
+export function values (collection) {
+  if (isArray(collection) || isMap(collection) || isSet(collection)) return collection.values();
+  if (isObject(collection, true)) return Object.values(collection).values(); // Object.entries returns an array, not an iterable
+  if (isIterable(collection) && !isIterator(collection)) {
+    return (function* () {
+      let i = 0;
+      for (const value of collection) {
+        yield [ i++, value ];
+      }
+    }());
+  }
+  if (isIterable(collection)) return collection;
+  return nullIterator();
+}
+
+export function keys (collection) {
+  if (isArray(collection) || isMap(collection)) return collection.keys();
+  if (isObject(collection, true)) return Object.keys(collection).values(); // Object.entries returns an array, not an iterable
+  if (isSet(collection) || isIterable(collection)) {
+    return (function* () {
+      let i = 0;
+      for (const value of collection) { // eslint-disable-line no-unused-vars
+        yield i++;
+      }
+    }());
+  }
+  return nullIterator();
+}
+
 export function* chunkIterable (input, size = 2) {
   const iterator = input[Symbol.iterator]();
   let chnk = [];

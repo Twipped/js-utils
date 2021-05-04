@@ -196,28 +196,6 @@ export function range (start, end, predicate = null) {
   return result;
 }
 
-export function keys (input) {
-  if (isArray(input)) return [ ...input.keys() ];
-
-  if (isSet(input)) return Array.from(input.entries(), ([ k ]) => k);
-
-  if (isMap(input)) return Array.from(input.keys());
-
-  if (isObject(input)) return Object.keys(input);
-
-  return [];
-}
-
-export function values (input) {
-  if (isArray(input)) return [ ...input ];
-
-  if (isSet(input) || isMap(input)) return Array.from(input.values());
-
-  if (isObject(input)) return Object.values(input);
-
-  return [];
-}
-
 export function intersect (...arrays) {
   return uniq(arrays.reduce(
     (a, b) => filter(a,
