@@ -5,7 +5,7 @@ import {
   fromPairs,
 } from './collections.js';
 import { entries } from './iterators.js';
-import { iteratee } from './functions.js';
+import { noop, iteratee } from './functions.js';
 import { defer, timeout } from './timers.js';
 
 export function pdelay (delay) {
