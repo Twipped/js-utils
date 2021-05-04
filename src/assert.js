@@ -1,4 +1,5 @@
 /* eslint no-console: 0 */
+/* globals process */
 
 import {
   isArray,

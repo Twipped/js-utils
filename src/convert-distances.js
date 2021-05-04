@@ -187,6 +187,7 @@ export const FOOT = {
     'feet',
     'ft',
     'sqft',
+    'sf',
   ],
   ratio: 0.3048,
 };
@@ -270,6 +271,6 @@ const unitMap = [
 }, {});
 
 export default function lookup (name) {
-  return unitMap[name] || null;
+  return unitMap[name.toLowerCase()] || null;
 }
 lookup.units = unitMap;
