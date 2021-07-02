@@ -27,6 +27,7 @@ export const MAPMODE_MAP    = 'MAP';
 export const MAPMODE_OBJECT = 'OBJECT';
 export const MAPMODE_ITERABLE = 'ITERABLE';
 export const MAPMODE_ITERATOR = 'ITERATOR';
+export const MAPMODE_STRING = 'STRING';
 export const MAPMODE = {
   [MAPMODE_ARRAY]: MAPMODE_ARRAY,
   [MAPMODE_SET]: MAPMODE_SET,
@@ -37,6 +38,7 @@ export const MAPMODE = {
 };
 
 export function mapMode (collection, strict) {
+  if (isString(collection)) return MAPMODE_STRING;
   if (isArray(collection)) return MAPMODE_ARRAY;
   if (isSet(collection)) return MAPMODE_SET;
   if (isMap(collection)) return MAPMODE_MAP;
