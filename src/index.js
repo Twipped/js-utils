@@ -17,3 +17,4 @@ export * from './assert.js';
 export * from './is.js';
 export * from './isArrayOf.js';
 export * from './dom.js';
+export { default as MultiMap } from './multimap.js';
