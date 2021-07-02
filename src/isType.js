@@ -80,6 +80,43 @@ export function sizeOf (collection) {
   return !!collection;
 }
 
+export function empty (collection, strict) {
+  if (isString(collection)) return !collection.length;
+
+  if (!strict) {
+    if (isArray(collection)) return !collection.length;
+    if (isSet(collection) || isMap(collection)) return !collection.size;
+  }
+
+  if (strict && isArray(collection)) {
+    for (const item of collection) {
+      if (!isUndefined(item)) return false;
+    }
+    return true;
+  }
+
+  if (strict && isSet(collection)) {
+    for (const item of collection) {
+      if (!isUndefined(item)) return false;
+    }
+    return true;
+  }
+
+  if (strict && isMap(collection)) {
+    for (const item of collection.values()) {
+      if (!isUndefined(item)) return false;
+    }
+    return true;
+  }
+
+  if (isObject(collection)) {
+    for (const prop in collection) { // eslint-disable-line no-restricted-syntax
+      if ((strict && !isUndefined(collection[prop])) || hasOwn(collection, prop)) return false;
+    }
+    return true;
+  }
+}
+
 export function truthy (value) {
   if (isDate(value)) return !isNaN(value);
   if (isMappable(value)) return !!sizeOf(value);
