@@ -6,6 +6,7 @@ import {
   isObject,
   isIterator,
   isIterable,
+  hasOwn,
 } from './isType.js';
 
 export function* nullIterator () {}
@@ -17,9 +18,15 @@ export function ensureIterable (it) {
   return nullIterator();
 }
 
+export function* iterateObject (collection) {
+  for (const key in collection) { // eslint-disable-line no-restricted-syntax
+    if (hasOwn(collection, key)) yield [ key, collection[key] ];
+  }
+}
+
 export function entries (collection) {
   if (isArray(collection) || isMap(collection)) return collection.entries();
-  if (isObject(collection, true)) return Object.entries(collection).values(); // Object.entries returns an array, not an iterable
+  if (isObject(collection, true)) iterateObject(collection);
   if (isSet(collection) || isIterable(collection)) {
     return (function* () {
       let i = 0;
