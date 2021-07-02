@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { intersect, difference, uniq, first, map } from '../src/index.js';
+import { iterateObject, intersect, difference, uniq, first, map } from '../src/index.js';
 
 tap.test('uniq array', async (t) => {
 
@@ -42,6 +42,25 @@ tap.test('difference', async (t) => {
   t.same(difference(...input), output);
 });
 
+tap.test('iterateObject', async (t) => {
+
+  const input = {
+    a: 1,
+    b: 2,
+  };
+
+  const itr = iterateObject(input);
+  var res = itr.next();
+  t.equal(res.done, false);
+  t.same(res.value, [ 'a', 1 ]);
+  res = itr.next();
+  t.equal(res.done, false);
+  t.same(res.value, [ 'b', 2 ]);
+  res = itr.next();
+  t.equal(res.done, true);
+  t.equal(res.value, undefined);
+});
+
 tap.test('first', async (t) => {
 
   const inputs = [
@@ -62,21 +81,11 @@ tap.test('first', async (t) => {
       e: 5,
     },
   ];
-  const outputs = [
-    1,
-    1,
-    1,
-    1,
-  ];
-  const outputs2 = [
-    [ 1, 2 ],
-    [ 1, 2 ],
-    [ 1, 2 ],
-    [ 1, 2 ],
-  ];
 
-  t.same(inputs.map((i) => first(i)), outputs);
-  t.same(inputs.map((i) => first(i, 2)), outputs2);
+  for (const input of inputs) {
+    t.same(first(input   ), 1,        'single value' + input);
+    t.same(first(input, 2), [ 1, 2 ], 'multiple values' + input);
+  }
 });
 
 

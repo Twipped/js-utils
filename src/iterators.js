@@ -18,15 +18,25 @@ export function ensureIterable (it) {
   return nullIterator();
 }
 
-export function* iterateObject (collection) {
+export const ITERATE_ENTRIES = 'ENTRIES';
+export const ITERATE_VALUES = 'VALUES';
+export const ITERATE_KEYS = 'KEYS';
+
+export function* iterateObject (collection, mode = ITERATE_ENTRIES) {
   for (const key in collection) { // eslint-disable-line no-restricted-syntax
-    if (hasOwn(collection, key)) yield [ key, collection[key] ];
+    if      (!hasOwn(collection, key)) continue;
+    if      (mode === ITERATE_ENTRIES) yield [ key, collection[key] ];
+    else if (mode === ITERATE_KEYS)    yield key;
+    else if (mode === ITERATE_VALUES)  yield collection[key];
   }
 }
+iterateObject.ENTRIES = ITERATE_ENTRIES;
+iterateObject.VALUES  = ITERATE_VALUES;
+iterateObject.KEYS    = ITERATE_KEYS;
 
 export function entries (collection) {
   if (isArray(collection) || isMap(collection)) return collection.entries();
-  if (isObject(collection, true)) iterateObject(collection);
+  if (isObject(collection, true)) return iterateObject(collection, ITERATE_ENTRIES);
   if (isSet(collection) || isIterable(collection)) {
     return (function* () {
       let i = 0;
@@ -40,7 +50,7 @@ export function entries (collection) {
 
 export function values (collection) {
   if (isArray(collection) || isMap(collection) || isSet(collection)) return collection.values();
-  if (isObject(collection, true)) return Object.values(collection).values(); // Object.entries returns an array, not an iterable
+  if (isObject(collection, true)) return iterateObject(collection, ITERATE_VALUES);
   if (isIterable(collection) && !isIterator(collection)) {
     return (function* () {
       let i = 0;
@@ -55,7 +65,7 @@ export function values (collection) {
 
 export function keys (collection) {
   if (isArray(collection) || isMap(collection)) return collection.keys();
-  if (isObject(collection, true)) return Object.keys(collection).values(); // Object.entries returns an array, not an iterable
+  if (isObject(collection, true)) return iterateObject(collection, ITERATE_KEYS);
   if (isSet(collection) || isIterable(collection)) {
     return (function* () {
       let i = 0;
