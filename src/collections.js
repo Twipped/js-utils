@@ -64,9 +64,16 @@ export function faccimilate (collection, strict) {
   }
 }
 
-export function range (start, end, predicate = null) {
+export function range (start, end, step = 1, predicate = null) {
+  if (isFunction(step)) {
+    predicate = step;
+    step = 1;
+  }
+  assert(start <= end, 'End value must be larger than start value');
+  assert(step > 0, 'Step must be a positive number');
+
   const result = [];
-  for (let i = start; i <= end; i++) {
+  for (let i = start; i <= end; i += step) {
     if (predicate) {
       const res = predicate(i, i, i);
       if (res !== undefined) result.push(res);
