@@ -10,8 +10,10 @@ import {
   isString,
   isPrimitive,
 } from './isType.js';
+import { get } from './objects.js';
 
 export function noop () {}
+export function passthru (x) { return x; }
 
 export function r (input, ...args) {
   return isFunction(input) ? r(input(...args), args) : input;
@@ -32,7 +34,7 @@ export function iteratee (match) {
       if (isMap(o)) return o.get(match);
       if (isSet(o)) return o.has(match);
       if (isPrimitive(o)) return o[match];
-      if (isObject(o)) return o[match];
+      if (isObject(o)) return get(o, match);
       return o === match;
     };
   }
@@ -104,8 +106,15 @@ export function sorter (match) {
           k = k[0];
           asc = false;
         }
-
-        const v = asc ? qs(a[k], b[k]) : qs(b[k], a[k]);
+        let left, right;
+        if (isFunction(k)) {
+          left = k(a);
+          right = k(b);
+        } else {
+          left = get(a, k);
+          right = get(b, k);
+        }
+        const v = asc ? qs(left, right) : qs(right, left);
         if (v) return v;
       }
       return 0;
