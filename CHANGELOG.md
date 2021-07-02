@@ -1,4 +1,33 @@
 
+4.0.0 / 2021-07-02
+==================
+
+- Now works directly from source in Node 14.
+- Fixed bug with `entries` starting at index 1 when iterating Sets
+- `entries`, `values` and `keys` now always return iterators. Object iteration is faster and smarter.
+- Fixed crash in `catcher`
+- `distance` is now case insensitive. Added the `sf` unit to feet.
+- `mapMode` now supports strings, and the `MAPMODE_STRING` constant has been added.
+- `range` now supports an optional third argument for defining a step size
+- Fixed `equal`, `shallowEqual` and `deepEqual` treating non-numeric strings as identical when they aren't.
+- `sorter` and `sort` now support functions in arrays, and deep targeting keys as predicate options.
+
+- Breaking Changes
+  - `hasOwn` is now part of the `isType` module.
+  - `clone`, `merge`, `collect`, `get`, `set` and `has` now live in a new `objects` module.
+
+- New Features
+  - `join` concatenates arrays using a delimiter
+  - `iterateObject` produces entries, keys or values one property at a time (instead of producing an array first)
+  - `empty` quickly determines if a collection (including objects) is empty. Supports a truthy second argument to ignore undefined values.
+  - `floor` and `ceil`, which support a step value to round to (eg, floor to nearest 50)
+  - `isBetween` and `isNotBetween` for comparing numeric values.
+  - `warn` to send errors to console in non-production environments.
+  - `DEFAULT` has been added as a generic use Symbol
+  - `MultiMap` is a hashmap class which supports using arrays of values for deep key assignment.
+  - `memoize` is a promise-aware function memoization utility.
+
+
 3.0.0 / 2021-04-19
 ==================
 
