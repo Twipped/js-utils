@@ -68,6 +68,10 @@ export function isMappable (collection, arrays = true) {
   );
 }
 
+export function hasOwn (obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
 export function sizeOf (collection) {
   if (isArray(collection) || isString(collection)) return collection.length;
   if (isSet(collection) || isMap(collection)) return collection.size;
