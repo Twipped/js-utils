@@ -6,7 +6,7 @@ import {
   MAPMODE_MAP,
   MAPMODE_OBJECT,
 } from './collections.js';
-import { isRegExp, sizeOf } from './isType.js';
+import { isNumber, isRegExp, sizeOf } from './isType.js';
 
 export function isEqualTo (value) {
   return (tok) => equal(value, tok);
@@ -14,7 +14,7 @@ export function isEqualTo (value) {
 
 export function equal (a, b, depth = 1) {
   if (a === b) return true;
-  if (isNaN(a) && isNaN(b)) return true;
+  if (isNumber(a) && isNumber(b) && isNaN(a) && isNaN(b)) return true;
   if ((!a || !b) || typeof a !== typeof b) return false;
 
   if (isRegExp(a) && isRegExp(b)) return a.source === b.source && a.flags === b.flags;
