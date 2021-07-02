@@ -111,7 +111,7 @@ export function includes (collection, value) {
 }
 
 export function arrayify (input) {
-  if (isArray(input)) return [ ...input ];
+  if (isArray(input)) return input.slice();
 
   if (isSet(input) || isMap(input)) return Array.from(input.values());
 
@@ -230,7 +230,7 @@ export function sort (collection, predicate) {
 
   predicate = sorter(predicate);
 
-  if (isArray(collection)) return [ ...collection ].sort(predicate);
+  if (isArray(collection)) return collection.slice().sort(predicate);
 
   if (isSet(collection)) {
     return new Set(Array.from(collection.values()).sort(predicate));
