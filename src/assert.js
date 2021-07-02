@@ -29,8 +29,10 @@ export const assertIsPlainObject = (ok, ...args) => assert(isObject(ok, true), .
 export const assertIsString      = (ok, ...args) => assert(isString(ok), ...args);
 export const assertIsNumber      = (ok, ...args) => assert(isNumber(ok), ...args);
 
-export const warning = process.env.NODE_ENV === 'production'
-  ? (ok, ...args) => {
-    if (!ok) (console.trace || console.error)(...args);
+export const warn = process.env.NODE_ENV !== 'production'
+  ? (...args) => {
+    (console.trace || console.error)(...args);
   }
   : noop;
+
+export const warning = (ok, ...args) => !ok && warn(...args);
