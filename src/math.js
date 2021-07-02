@@ -1,5 +1,5 @@
 
-import { isDate } from './isType.js';
+import { isDate, isUndefinedOrNull } from './isType.js';
 import { flatten } from './collections.js';
 
 export function clamp (value, minv = -Infinity, maxv = Infinity) {
@@ -59,4 +59,26 @@ export function stddev (...collection) {
     totDiff += sq;
   }
   return Math.sqrt(totDiff / collection.length);
+}
+
+export function floor (value, nearest = 0) {
+  if (!nearest) return Math.floor(value);
+  return value - (value % nearest);
+}
+
+export function ceil (value, nearest = 0) {
+  if (!nearest) return Math.ceil(value);
+  return (Math.floor(value / nearest) + 1) * nearest;
+}
+
+export function isBetween (value, vmin, vmax) {
+  if (isUndefinedOrNull(vmin)) vmin = -Infinity;
+  if (isUndefinedOrNull(vmax)) vmax = Infinity;
+  return value >= vmin && value <= vmax;
+}
+
+export function isNotBetween (value, vmin, vmax) {
+  if (isUndefinedOrNull(vmin)) vmin = -Infinity;
+  if (isUndefinedOrNull(vmax)) vmax = Infinity;
+  return value > vmin && value < vmax;
 }
