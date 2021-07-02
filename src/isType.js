@@ -1,5 +1,7 @@
 
+export const DEFAULT = Symbol('DEFAULT');
 
+export const isDefault             = (input) => input === DEFAULT;
 export const isArray               = Array.isArray;
 export const isNumber              = (input) => typeof input === 'number' && !isNaN(input);
 export const isBoolean             = (input) => typeof input === 'boolean';
@@ -21,7 +23,6 @@ export const isList                = (input) => isArray(input) || isSet(input);
 export const isDict                = (input) => isObject(input) || isMap(input);
 export const isIterator            = (input) => isObject(input) && isFunction(input.next);
 export const isPromise             = (input) => isObject(input) && isFunction(input.then);
-
 
 export function isIterable (input, strict = false) {
   if (isUndefinedOrNull(input)) return false;
