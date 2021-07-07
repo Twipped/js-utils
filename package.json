@@ -1,6 +1,6 @@
 {
   "name": "@twipped/utils",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A collection of commonly used utility functions",
   "main": "dist/utils.cjs.js",
   "module": "dist/utils.esm.js",
