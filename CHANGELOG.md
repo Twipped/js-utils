@@ -1,4 +1,16 @@
 
+4.1.0 / 2021-08-12
+==================
+
+- Fixed a huge bug where `equal` would incorrectly report two objects as the same.
+- `warn` and `warning` no longer default to console.trace and instead always use console.error.
+- `mapValues` can now accept the same kinds of predicates as all other collection functions.
+- `filter` now supports objects and maps, returning the same type that was provided.
+
+- New Features
+ - `EventEmitter` is now available as a base class. This is a barebones implementation of the NodeJS EventEmitter class.
+ - `threepiece` iterates over a collection with a predicate function, providing both the previous and next values along with the iterated item.
+
 4.0.0 / 2021-07-02
 ==================
 
