@@ -20,3 +20,4 @@ export * from './isArrayOf.js';
 export * from './dom.js';
 export { default as memoize } from './memoize.js';
 export { default as MultiMap } from './multimap.js';
+export { default as EventEmitter } from './events.js';
