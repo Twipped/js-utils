@@ -31,7 +31,7 @@ export const assertIsNumber      = (ok, ...args) => assert(isNumber(ok), ...args
 
 export const warn = process.env.NODE_ENV !== 'production'
   ? (...args) => {
-    (console.trace || console.error)(...args);
+    console.error(...args);
   }
   : noop;
 
