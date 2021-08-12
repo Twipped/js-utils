@@ -52,7 +52,7 @@ export function equal (a, b, depth = 1) {
 
   } else if (aType === MAPMODE_OBJECT) {
     for (const [ key, left ] of Object.entries(a)) {
-      const right = a[key];
+      const right = b[key];
       if (!equal(left, right, depth - 1)) return false;
     }
   } else {
