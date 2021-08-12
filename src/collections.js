@@ -575,6 +575,7 @@ export function map (collection, predicate) {
 
 export function mapValues (collection, predicate) {
   assert(isMap(collection) || isObject(collection, true), 'mapValues only works for simple objects, use mapReduce.');
+  predicate = iteratee(predicate);
 
   const result = {};
 
