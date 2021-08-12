@@ -314,16 +314,24 @@ export function groupBy (collection, predicate) {
 
 export function filter (collection, predicate) {
   predicate = iteratee(predicate);
+  const mode = mapMode(collection);
 
-  if (isArray(collection)) {
+  switch (mode) {
+  case MAPMODE_ARRAY:
     return collection.filter((value, i) => predicate(value, i, i));
-  }
 
-  if (isSet(collection)) {
+  case MAPMODE_SET:
     return Array.from(collection).filter((value, i) => predicate(value, i, i));
+
+  case MAPMODE_MAP:
+  case MAPMODE_OBJECT: {
+    const pairs = Array.from(entries(collection)).filter(([ key, value ], i) => predicate(value, key, i));
+    return fromPairs(pairs, mode);
   }
 
-  throw new Error('filter can not be applied to objects or maps, perhaps you meant to use omit?');
+  default:
+    throw new Error('filter can only be applied to Arrays, Objects, Sets and Maps, perhaps you meant to use omit?');
+  }
 }
 
 export function find (collection, predicate) {
