@@ -100,6 +100,21 @@ export async function prace (...promises) {
   });
 }
 
+export async function pcoalesce (...promises) {
+  promises = promises.flat(Infinity);
+  let count = promises.length;
+  return new Promise((resolve, reject) => {
+    const fin = (res) => {
+      if (res || count <= 0) return resolve(res);
+      count--;
+    };
+
+    for (const p of promises) {
+      p.then(fin, reject);
+    }
+  });
+}
+
 export async function preduce (collection, predicate, initial = null) {
   collection = await collection;
   predicate = iteratee(predicate);
