@@ -91,7 +91,7 @@ export async function pmap (collection, predicate, { concurrency = Infinity } = 
 }
 
 export async function prace (...promises) {
-  promises = Array.isArray(promises[0]) ? promises.flat(1) : promises;
+  promises = promises.flat(Infinity);
   if (Promise.race) return Promise.race(promises);
   return new Promise((resolve, reject) => {
     for (const p of promises) {
