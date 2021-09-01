@@ -4,6 +4,7 @@ import { terser } from 'rollup-plugin-terser';
 import banner from 'rollup-plugin-banner';
 import { join } from 'path';
 
+const __dirname = new URL('.', import.meta.url).pathname;
 const bannerConfig = {
   file: join(__dirname, 'LICENSE.txt'),
 };
@@ -20,6 +21,64 @@ const external = [
 export default [
 
   {
+    input: 'src/fs.js',
+    output: {
+      file: 'dist/fs.cjs.js',
+      format: 'cjs',
+      exports: 'named',
+    },
+    plugins: [
+      resolve({
+        preferBuiltins: true,
+      }),
+      babel({
+        exclude: 'node_modules/**',
+        presets: [
+          [ '@babel/preset-env', {
+            modules: false,
+            useBuiltIns: 'usage',
+            corejs: { version: 3, shippedProposals: true },
+            targets: {
+              node: '12',
+            },
+          } ],
+        ],
+      }),
+      banner(bannerConfig),
+    ],
+    external,
+  },
+
+  {
+    input: 'src/fs.js',
+    output: {
+      file: 'dist/fs.esm.js',
+      format: 'esm',
+      exports: 'named',
+    },
+    plugins: [
+      resolve({
+        preferBuiltins: true,
+      }),
+      babel({
+        exclude: 'node_modules/**',
+        presets: [
+          [ '@babel/preset-env', {
+            modules: false,
+            useBuiltIns: 'usage',
+            corejs: { version: 3, shippedProposals: true },
+            targets: {
+              node: '12',
+            },
+          } ],
+        ],
+      }),
+      banner(bannerConfig),
+    ],
+    external,
+  },
+
+  {
     input: 'src/index.js',
     output: {
       file: 'dist/utils.cjs.js',
@@ -33,13 +92,13 @@ export default [
       babel({
         exclude: 'node_modules/**',
         presets: [
-          [ "@babel/preset-env", {
+          [ '@babel/preset-env', {
             modules: false,
-            useBuiltIns: "usage",
+            useBuiltIns: 'usage',
             corejs: { version: 3, shippedProposals: true },
             targets: {
               node: '12',
-            }
+            },
           } ],
         ],
       }),
@@ -61,13 +120,13 @@ export default [
       babel({
         exclude: 'node_modules/**',
         presets: [
-          [ "@babel/preset-env", {
+          [ '@babel/preset-env', {
             modules: false,
-            useBuiltIns: "usage",
+            useBuiltIns: 'usage',
             corejs: { version: 3, shippedProposals: true },
             targets: {
               node: '12',
-            }
+            },
           } ],
         ],
       }),
@@ -88,9 +147,9 @@ export default [
       babel({
         exclude: 'node_modules/**',
         presets: [
-          [ "@babel/preset-env", {
+          [ '@babel/preset-env', {
             modules: false,
-            useBuiltIns: "usage",
+            useBuiltIns: 'usage',
             corejs: { version: 3, shippedProposals: true },
           } ],
         ],
@@ -125,9 +184,9 @@ export default [
       babel({
         exclude: 'node_modules/**',
         presets: [
-          [ "@babel/preset-env", {
+          [ '@babel/preset-env', {
             modules: false,
-            useBuiltIns: "usage",
+            useBuiltIns: 'usage',
             corejs: { version: 3, shippedProposals: true },
           } ],
         ],
