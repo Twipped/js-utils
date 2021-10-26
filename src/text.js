@@ -45,26 +45,26 @@ export function ucfirst (input) {
 }
 
 export function ucsentence (input) {
-  return input.replace(/((?:\S[^.?!]*)[.?!]*)/g, (txt) =>
+  return String(input).replace(/((?:\S[^.?!]*)[.?!]*)/g, (txt) =>
     txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
   );
 }
 
 export function ucwords (input) {
-  return input.replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.substr(1));
+  return String(input).replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.substr(1));
 }
 
 var rUpper = /([A-Z])/g;
 export function camelToHyphen (input) {
-  return input.replace(rUpper, '-$1').toLowerCase();
+  return String(input).replace(rUpper, '-$1').toLowerCase();
 }
 
 export function camelToSnake (input) {
-  return input.replace(rUpper, '_$1').toLowerCase();
+  return String(input).replace(rUpper, '_$1').toLowerCase();
 }
 
 export function camelToUpperSnake (input) {
-  return input.replace(rUpper, '_$1').toUpperCase();
+  return String(input).replace(rUpper, '_$1').toUpperCase();
 }
 
 export function jsonSoftParse (input, fallback) {
