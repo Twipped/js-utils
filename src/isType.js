@@ -33,6 +33,13 @@ export function isIterable (input, strict = false) {
 
 export function isNumeric (input) {
   if (isNumber(input)) return true;
+  input = String(input);
+  if (input.includes('.') || input[0] === '0') {
+    // we have to do this the hard way
+    return !!input.match(/^-?\d+(?:\.\d+)$/);
+  }
+
+  // the easy way
   return String(Number(input)) === input;
 }
 
