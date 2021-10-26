@@ -68,7 +68,7 @@ export function iteratee (match) {
   }
 }
 
-function qs (a, b) {
+export function quicksort (a, b) {
   if (isObject(a)) {
     if (a.valueOf !== Object.prototype.valueOf) a = a.valueOf();
     a = 1;
@@ -88,16 +88,16 @@ export function sorter (match) {
 
   if (isString(match)) {
     return (a, b) => {
-      if (!isObject(a) && !isObject(b)) return qs(a, b);
+      if (!isObject(a) && !isObject(b)) return quicksort(a, b);
       if (!isObject(a)) return -1;
       if (!isObject(b)) return 1;
-      return qs(a[match], b[match]);
+      return quicksort(get(a, match), get(b, match));
     };
   }
 
   if (isArray(match)) {
     return (a, b) => {
-      if (!isObject(a) && !isObject(b)) return qs(a, b);
+      if (!isObject(a) && !isObject(b)) return quicksort(a, b);
       if (!isObject(a)) return -1;
       if (!isObject(b)) return 1;
       for (let k of match) {
@@ -114,7 +114,7 @@ export function sorter (match) {
           left = get(a, k);
           right = get(b, k);
         }
-        const v = asc ? qs(left, right) : qs(right, left);
+        const v = asc ? quicksort(left, right) : quicksort(right, left);
         if (v) return v;
       }
       return 0;
@@ -123,11 +123,11 @@ export function sorter (match) {
 
   if (isObject(match)) {
     return (a, b) => {
-      if (!isObject(a) && !isObject(b)) return qs(a, b);
+      if (!isObject(a) && !isObject(b)) return quicksort(a, b);
       if (!isObject(a)) return -1;
       if (!isObject(b)) return 1;
       for (const [ k, d ] of Object.entries(match)) {
-        const v = qs(a[k], b[k]) * (d < 0 ? -1 : 1);
+        const v = quicksort(a[k], b[k]) * (d < 0 ? -1 : 1);
         if (v) return v;
       }
       return 0;
@@ -135,7 +135,7 @@ export function sorter (match) {
   }
 
   return (a, b) => {
-    if (!isObject(a) && !isObject(b)) return qs(a, b);
+    if (!isObject(a) && !isObject(b)) return quicksort(a, b);
     if (!isObject(a)) return -1;
     if (!isObject(b)) return 1;
     return 0;
