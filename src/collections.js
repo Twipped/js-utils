@@ -251,9 +251,11 @@ export function sort (collection, predicate) {
 
 export function uniq (collection, predicate = null) {
 
+  if (!collection) return collection;
+
   if (!predicate && isArray(collection)) return [ ...new Set(collection) ];
 
-  if (predicate === null) {
+  if (predicate === undefined || predicate === null) {
     predicate = (v) => v;
   } else {
     predicate = iteratee(predicate);
@@ -285,7 +287,7 @@ export function uniq (collection, predicate = null) {
   }
 
   if (isObject(collection)) {
-    return mapReduce(collection, ([ v, k ]) => {
+    return mapReduce(collection, (v, k) => {
       const match = predicate(v);
       if (exists.has(match)) return null;
       exists.add(match);
