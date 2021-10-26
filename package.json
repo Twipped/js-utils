@@ -5,6 +5,10 @@
   "main": "dist/utils.cjs.js",
   "module": "dist/utils.esm.js",
   "type": "module",
+  "exports": {
+    "import": "./src/index.js",
+    "require": "./dist/utils.cjs.js"
+  },
   "scripts": {
     "test": "tap -R base --no-coverage tests",
     "cover": "tap -R terse --coverage tests",
