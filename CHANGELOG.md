@@ -1,4 +1,19 @@
 
+4.2.0 / 2021-10-25
+==================
+
+- Fix: `prace` now handles arrays of promises
+- New: `pcoalesce` will resolve first promise that resolves a truthy value, ignoring rejections
+- Fix: `uniq` now actually works right on objects
+- New: `quicksort` is now exposed for usage
+- New: `sorter` now supports deep property paths
+- Fix: `isNumeric` now detects floats
+- New: `hash` is a very rudimentary function for generating a hash integer from a string
+- New: `mapper` is a utility for converting objects between schema
+- Fix: `ucsentence`, `ucwords`, `camelToHyphen`, `camelToSnake` and `camelToUpperSnake` now coerce their inputs to strings.
+- New: `similarity` performs a comparison between two strings and returns a value between 0 and 1 indicating how close they are.
+
+
 4.1.0 / 2021-08-12
 ==================
 
