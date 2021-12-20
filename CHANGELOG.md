@@ -1,17 +1,26 @@
 
+5.0.0 / 2021-12-20
+==================
+
+- Breaking Change: Now uses Node 12/14 `exports` package structure. As such, the rollup builds are no longer included.
+- New: `clamp` now supports an extra argument for rounding to a step value.
+- New: `round` for rounding to a nearest value.
+- Fix: `floor` and `ceil` are now more reliable when rounding to a nearest value.
+- Fix: `EventEmitter` no longer crashes if there are no listeners for an event.
+
 4.2.0 / 2021-10-25
 ==================
 
-- Fix: `prace` now handles arrays of promises
 - New: `pcoalesce` will resolve first promise that resolves a truthy value, ignoring rejections
-- Fix: `uniq` now actually works right on objects
 - New: `quicksort` is now exposed for usage
 - New: `sorter` now supports deep property paths
-- Fix: `isNumeric` now detects floats
 - New: `hash` is a very rudimentary function for generating a hash integer from a string
 - New: `mapper` is a utility for converting objects between schema
-- Fix: `ucsentence`, `ucwords`, `camelToHyphen`, `camelToSnake` and `camelToUpperSnake` now coerce their inputs to strings.
 - New: `similarity` performs a comparison between two strings and returns a value between 0 and 1 indicating how close they are.
+- Fix: `prace` now handles arrays of promises
+- Fix: `uniq` now actually works right on objects
+- Fix: `isNumeric` now detects floats
+- Fix: `ucsentence`, `ucwords`, `camelToHyphen`, `camelToSnake` and `camelToUpperSnake` now coerce their inputs to strings.
 
 
 4.1.0 / 2021-08-12
