@@ -2,52 +2,43 @@
   "name": "@twipped/utils",
   "version": "4.2.0",
   "description": "A collection of commonly used utility functions",
-  "main": "dist/utils.cjs.js",
-  "module": "dist/utils.esm.js",
   "type": "module",
   "exports": {
-    "import": "./src/index.js",
-    "require": "./dist/utils.cjs.js"
+    ".": "./src/index.js",
+    "./dom": "./src/dom.js",
+    "./fs": "./src/fs.js"
   },
   "scripts": {
     "test": "tap -R base --no-coverage tests",
     "cover": "tap -R terse --coverage tests",
-    "lint": "eslint './{src,tests}/**/*.{js,jsx}' --fix",
-    "build": "rollup -c",
-    "clean": "rm -rf ./dist ./.nyc_output ./util.js",
-    "start": "npm run lint && npm run clean && npm run build"
+    "lint": "eslint './{src,tests}/**/*.{js,jsx}' --fix"
   },
   "engines": {
     "node": ">=12.10.0"
   },
   "author": "Jocelyn Badgley <joc@twipped.com> (http://twipped.com)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Twipped/js-utils"
+  },
   "devDependencies": {
-    "@babel/core": "~7.13.16",
-    "@babel/node": "~7.13.13",
-    "@babel/preset-env": "~7.13.15",
-    "@rollup/plugin-node-resolve": "~11.2.1",
-    "babel-eslint": "~10.1.0",
-    "babel-node": "0.0.1-security",
-    "eslint": "~7.24.0",
-    "eslint-config-twipped": "~4.0.0",
+    "eslint": "~8.5.0",
+    "eslint-config-twipped": "~6.0.0",
     "eslint-plugin-node": "~11.1.0",
-    "eslint-plugin-promise": "~5.1.0",
-    "rollup": "~2.45.2",
-    "rollup-plugin-babel": "~4.4.0",
-    "rollup-plugin-banner": "~0.2.1",
-    "rollup-plugin-terser": "~7.0.2",
-    "tap": "~15.0.4"
+    "eslint-plugin-promise": "~6.0.0",
+    "tap": "~15.1.5"
   },
   "files": [
-    "dist",
     "src",
     "CHANGELOG.md",
     "LICENSE.txt",
     "README.md"
   ],
-  "dependencies": {},
   "publishConfig": {
     "access": "public"
+  },
+  "eslintConfig": {
+    "extends": "twipped/node-esm"
   }
 }
