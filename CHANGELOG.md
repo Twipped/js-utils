@@ -1,4 +1,9 @@
 
+5.0.1 / 2021-12-20
+==================
+
+- Fix: Distance conversions will no longer be falsely included during tree-shaking
+
 5.0.0 / 2021-12-20
 ==================
 
