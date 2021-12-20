@@ -61,14 +61,19 @@ export function stddev (...collection) {
   return Math.sqrt(totDiff / collection.length);
 }
 
-export function floor (value, nearest = 0) {
-  if (!nearest) return Math.floor(value);
-  return value - (value % nearest);
+export function floor (value, nearest = 1) {
+  if (nearest <= 0 || nearest === 1) return Math.floor(value);
+  return Math.floor(value / nearest) * nearest;
 }
 
-export function ceil (value, nearest = 0) {
-  if (!nearest) return Math.ceil(value);
-  return (Math.floor(value / nearest) + 1) * nearest;
+export function ceil (value, nearest = 1) {
+  if (nearest <= 0 || nearest === 1) return Math.ceil(value);
+  return Math.ceil(value / nearest) * nearest;
+}
+
+export function round (value, nearest = 1) {
+  if (nearest <= 0 || nearest === 1) return Math.round(value);
+  return Math.round(value / nearest) * nearest;
 }
 
 export function isBetween (value, vmin, vmax) {
