@@ -1,6 +1,6 @@
 {
   "name": "@twipped/utils",
-  "version": "4.2.0",
+  "version": "5.0.0",
   "description": "A collection of commonly used utility functions",
   "type": "module",
   "exports": {
