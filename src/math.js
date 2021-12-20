@@ -2,12 +2,26 @@
 import { isDate, isUndefinedOrNull } from './isType.js';
 import { flatten } from './collections.js';
 
-export function clamp (value, minv = -Infinity, maxv = Infinity) {
+export function clamp (value, minv = -Infinity, maxv = Infinity, nearest) {
   if (value === undefined || value === null || value === '') return null;
   if (minv === undefined || minv === null || minv === '') minv = -Infinity;
   if (maxv === undefined || maxv === null || maxv === '') maxv = Infinity;
-  if (isDate(value)) return new Date(Math.max(Math.min(value, maxv), minv));
-  return Math.max(Math.min(value, maxv), minv);
+
+  let v = value;
+  if (nearest) {
+    if (v >= maxv) {
+      v = maxv;
+    } else if (v <= minv) {
+      v = minv;
+    } else {
+      v = Math.round(v / nearest) * nearest;
+    }
+  } else {
+    v = Math.max(Math.min(v, maxv), minv);
+  }
+
+  if (isDate(value)) return new Date(v);
+  return v;
 }
 
 export function min (...collection) {
