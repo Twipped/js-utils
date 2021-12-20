@@ -1,4 +1,3 @@
-/* globals document */
 import { iteratee } from './functions.js';
 
 export function qsa (el, selector, predicate) {

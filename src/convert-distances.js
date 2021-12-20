@@ -1,5 +1,5 @@
 
-export const METER = {
+const METER = {
   names: [
     'meter',
     'meters',
@@ -11,7 +11,7 @@ export const METER = {
   ratio: 1,
 };
 
-export const PETAMETER = {
+const PETAMETER = {
   names: [
     'petameter',
     'petametre',
@@ -23,7 +23,7 @@ export const PETAMETER = {
   ratio: 1e15,
 };
 
-export const TERAMETER = {
+const TERAMETER = {
   names: [
     'terameter',
     'terametre',
@@ -35,7 +35,7 @@ export const TERAMETER = {
   ratio: 1e12,
 };
 
-export const GIGAMETER = {
+const GIGAMETER = {
   names: [
     'gigameter',
     'gigametre',
@@ -47,7 +47,7 @@ export const GIGAMETER = {
   ratio: 1e9,
 };
 
-export const MEGAMETER = {
+const MEGAMETER = {
   names: [
     'megameter',
     'megametre',
@@ -59,7 +59,7 @@ export const MEGAMETER = {
   ratio: 1e6,
 };
 
-export const KILOMETER = {
+const KILOMETER = {
   names: [
     'kilometer',
     'kilometre',
@@ -71,7 +71,7 @@ export const KILOMETER = {
   ratio: 1e3,
 };
 
-export const HECTOMETER = {
+const HECTOMETER = {
   names: [
     'hectometer',
     'hectometre',
@@ -83,7 +83,7 @@ export const HECTOMETER = {
   ratio: 1e2,
 };
 
-export const DECAMETER = {
+const DECAMETER = {
   names: [
     'decameter',
     'decametre',
@@ -95,7 +95,7 @@ export const DECAMETER = {
   ratio: 10,
 };
 
-export const DECIMETER = {
+const DECIMETER = {
   names: [
     'decimeter',
     'decimetre',
@@ -107,7 +107,7 @@ export const DECIMETER = {
   ratio: 1e-1,
 };
 
-export const CENTIMETER = {
+const CENTIMETER = {
   names: [
     'centimeter',
     'centimetre',
@@ -119,7 +119,7 @@ export const CENTIMETER = {
   ratio: 1e-2,
 };
 
-export const MILLIMETER = {
+const MILLIMETER = {
   names: [
     'millimeter',
     'millimetre',
@@ -132,7 +132,7 @@ export const MILLIMETER = {
 };
 
 
-export const MICROMETER = {
+const MICROMETER = {
   names: [
     'micrometer',
     'micrometre',
@@ -145,7 +145,7 @@ export const MICROMETER = {
   ratio: 1e-7,
 };
 
-export const NANOMETER = {
+const NANOMETER = {
   names: [
     'nanometer',
     'nanometre',
@@ -157,7 +157,7 @@ export const NANOMETER = {
   ratio: 1e-9,
 };
 
-export const PICOMETER = {
+const PICOMETER = {
   names: [
     'picometer',
     'picometre',
@@ -169,7 +169,7 @@ export const PICOMETER = {
   ratio: 1e-12,
 };
 
-export const FEMTOMETER = {
+const FEMTOMETER = {
   names: [
     'femtometer',
     'femtometre',
@@ -181,7 +181,7 @@ export const FEMTOMETER = {
   ratio: 1e-15,
 };
 
-export const FOOT = {
+const FOOT = {
   names: [
     'foot',
     'feet',
@@ -192,7 +192,7 @@ export const FOOT = {
   ratio: 0.3048,
 };
 
-export const INCH = {
+const INCH = {
   names: [
     'inch',
     'inches',
@@ -202,7 +202,7 @@ export const INCH = {
   ratio: 0.0254,
 };
 
-export const YARD = {
+const YARD = {
   names: [
     'yard',
     'yards',
@@ -212,7 +212,7 @@ export const YARD = {
   ratio: 0.9144,
 };
 
-export const MILE = {
+const MILE = {
   names: [
     'mile',
     'miles',
@@ -222,7 +222,7 @@ export const MILE = {
   ratio: 1609.344,
 };
 
-export const NAUTICAL_MILE = {
+const NAUTICAL_MILE = {
   names: [
     'nautical mile',
     'nautical miles',
@@ -233,7 +233,7 @@ export const NAUTICAL_MILE = {
   ratio: 1852,
 };
 
-export const ACRE = {
+const ACRE = {
   names: [
     'acre',
     'acres',
@@ -242,7 +242,7 @@ export const ACRE = {
   ratio: 4046.86,
 };
 
-const unitMap = [
+const unitMap = /* #__PURE__*/[
   METER,
   PETAMETER,
   TERAMETER,
