@@ -38,12 +38,12 @@ export default class EventEmitter {
     var listeners = this.__ee__.get(type);
 
     if (arguments.length === 1 || !listener) {
-      listeners.clear();
+      listeners && listeners.clear();
       this.__ee__.delete(type);
       return this;
     }
 
-    listeners.delete(listener);
+    listeners && listeners.delete(listener);
     return this;
   }
 
