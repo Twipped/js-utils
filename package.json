@@ -3,6 +3,7 @@
   "version": "5.0.1",
   "description": "A collection of commonly used utility functions",
   "type": "module",
+  "main": "./src/index.js",
   "exports": {
     ".": "./src/index.js",
     "./dom": "./src/dom.js",
@@ -14,7 +15,7 @@
     "lint": "eslint './{src,tests}/**/*.{js,jsx}' --fix"
   },
   "engines": {
-    "node": ">=12.10.0"
+    "node": ">=14.10.0"
   },
   "author": "Jocelyn Badgley <joc@twipped.com> (http://twipped.com)",
   "license": "MIT",
@@ -39,6 +40,14 @@
     "access": "public"
   },
   "eslintConfig": {
-    "extends": "twipped/node-esm"
+    "extends": "twipped/node-esm",
+    "overrides": [
+      {
+        "files": [
+          "./src/dom.js"
+        ],
+        "extends": "twipped/browser"
+      }
+    ]
   }
 }
