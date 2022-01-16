@@ -1,6 +1,6 @@
 {
   "name": "@twipped/utils",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "A collection of commonly used utility functions",
   "type": "module",
   "main": "./src/index.js",
