@@ -1,6 +1,16 @@
 
-
-export default function slugify (input, delimiter = '-', separators = false) {
+/**
+ * Generates a url safe string from the given input
+ *
+ * @param   {string}  input
+ * @param   {Object}  [options]
+ * @param   {string}  [options.delimiter]
+ * @param   {boolean} [options.separators]
+ *
+ * @returns {string}
+ * @category Text
+ */
+export default function slugify (input, { delimiter = '-', separators = false } = {}) {
   var i = separators && separators.length;
   var slug = input;
   var regexEscape = new RegExp(/[[/\\^$*+?.()|{}\]]/g);

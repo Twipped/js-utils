@@ -2,8 +2,22 @@
 import MultiMap from './multimap.js';
 import {
   isPromise,
-} from './isType.js';
+} from './types.js';
 
+/**
+ * Produces a memoized version of the given function which will cache
+ * the values the function produces. This is a promise aware function,
+ * and will self-invalidate if a promise rejects.
+ *
+ * @param   {Function} fn
+ * @param   {Object}   [options]
+ * @param   {number}   [options.maxAge] Duration the cache should survive,
+ * in microseconds. Default is 0 (infinite)
+ * @param   {Object}   [options.context]
+ *
+ * @returns {any|Promise<any>}
+ * @category Functional
+ */
 export default function memoize (fn, { maxAge, context } = {}) {
   const cache = new MultiMap();
 

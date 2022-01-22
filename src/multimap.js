@@ -1,15 +1,23 @@
 
-import { DEFAULT } from './isType.js';
+import { DEFAULT } from './types.js';
 
-const MODE_ENTRIES = 'ENTRIES';
-const MODE_VALUES = 'VALUES';
-const MODE_KEYS = 'KEYS';
-const MODE_LEAVES = 'LEAVES';
+const /** @constant {string} */ MODE_ENTRIES = 'ENTRIES';
+const /** @constant {string} */ MODE_VALUES  = 'VALUES';
+const /** @constant {string} */ MODE_KEYS    = 'KEYS';
+const /** @constant {string} */ MODE_LEAVES  = 'LEAVES';
+const /** @constant {Symbol} */ EMPTY_KEY = Symbol('EMPTY_KEY');
+/** @enum {string} */ export const ITERATOR_MODE = {
+  [MODE_ENTRIES]: MODE_ENTRIES,
+  [MODE_VALUES]:  MODE_VALUES,
+  [MODE_KEYS]:    MODE_KEYS,
+  [MODE_LEAVES]:  MODE_LEAVES,
+};
 
-
-const EMPTY_KEY = Symbol('EMPTY_KEY');
-
-
+/**
+ * Dictionary map which stores values using key sets, rather than single keys.
+ *
+ * @category Data
+ */
 export default class MultiMap {
 
   constructor () {
@@ -95,6 +103,9 @@ export default class MultiMap {
 
 }
 
+/**
+ * @private
+ */
 class Limb {
   constructor (parent, key) {
     this.parent = parent;
@@ -144,6 +155,9 @@ class Limb {
 
 }
 
+/**
+ * @private
+ */
 class Leaf {
   constructor (parent, value = DEFAULT) {
     this.parent = parent;
@@ -169,7 +183,16 @@ class Leaf {
   }
 }
 
-
+/**
+ * Generator for iterating through multimaps
+ *
+ * @private
+ * @param  {Limb} tree
+ * @param  {ITERATOR_MODE} mode
+ * @param  {Array}  segments
+ *
+ * @yields {Leaf}
+ */
 function* iterator (tree, mode = MODE_ENTRIES, segments = []) {
   for (const [ key, limb ] of tree._limbs.entries()) {
     const seg = segments.concat([ key ]);

@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { memoize } from '../src/index.js';
+import { memoize } from '../index.js';
 
 var value = 0;
 
@@ -35,7 +35,7 @@ tap.test('does not cache rejections', async (t) => {
     () => {
       t.pass('First call rejected');
       t.equal(value, 1, 'First call incremented');
-    },
+    }
   );
 
   t.equal(await fn(), 2, 'second call incremented again');
@@ -101,7 +101,7 @@ tap.test('catches a thrown exception', async (t) => {
     () => t.fail(),
     (e) => {
       t.equal(e.message, 'BAH!');
-    },
+    }
   );
 });
 

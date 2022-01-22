@@ -3,16 +3,17 @@
   "version": "5.0.2",
   "description": "A collection of commonly used utility functions",
   "type": "module",
-  "main": "./src/index.js",
+  "main": "./index.js",
   "exports": {
-    ".": "./src/index.js",
-    "./dom": "./src/dom.js",
-    "./fs": "./src/fs.js"
+    ".": "./index.js",
+    "./*": "./src/*.js"
   },
   "scripts": {
     "test": "tap -R base --no-coverage tests",
     "cover": "tap -R terse --coverage tests",
-    "lint": "eslint './{src,tests}/**/*.{js,jsx}' --fix"
+    "lint": "eslint './{src,tests}/**/*.{js,jsx}'",
+    "lint-fix": "eslint './{src,tests}/**/*.{js,jsx}' --fix",
+    "docs": "jsdoc2md -t README.hbs src/*.js > README.md"
   },
   "engines": {
     "node": ">=14.10.0"
@@ -24,11 +25,12 @@
     "url": "git://github.com/Twipped/js-utils"
   },
   "devDependencies": {
-    "eslint": "~8.5.0",
-    "eslint-config-twipped": "~6.0.0",
-    "eslint-plugin-node": "~11.1.0",
-    "eslint-plugin-promise": "~6.0.0",
-    "tap": "~15.1.5"
+    "eslint": "~8.14.0",
+    "eslint-config-twipped": "^7.1.3",
+    "jsdoc": "~3.6.10",
+    "jsdoc-to-markdown": "~7.1.1",
+    "pretty-format": "^27.5.1",
+    "tap": "~16.0.1"
   },
   "files": [
     "src",
@@ -40,14 +42,53 @@
     "access": "public"
   },
   "eslintConfig": {
-    "extends": "twipped/node-esm",
+    "extends": [
+      "twipped/node-esm"
+    ],
+    "rules": {
+      "jsdoc/require-jsdoc": 2
+    },
     "overrides": [
       {
         "files": [
           "./src/dom.js"
         ],
         "extends": "twipped/browser"
+      },
+      {
+        "files": [
+          "./tests/*"
+        ],
+        "extends": "twipped/node-esm"
       }
+    ]
+  },
+  "release": {
+    "preset": "conventionalcommits",
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "README.md",
+            "package.json"
+          ]
+        }
+      ],
+      "@semantic-release/github"
     ]
   }
 }

@@ -10,6 +10,14 @@ export const exists = (f) => fs.access(f).then(() => true, () => false);
 export const stat = (f) => fs.stat(f).catch(() => null);
 export const linkStat = (f) => fs.lstat(f).catch(() => null);
 
+/**
+ * Confirms if a given path is writable.
+ *
+ * @param   {string}  file
+ *
+ * @returns {Promise<boolean>}
+ * @category File System
+ */
 export async function isWritable (file) {
   try {
     await fs.access(file, fsConstants.F_OK | fsConstants.W_OK);
@@ -22,6 +30,14 @@ export async function isWritable (file) {
   }
 }
 
+/**
+ * Attempts to create a file at the given path, creating any missing folders along the way.
+ * If the file already exists, its modification time will be updated.
+ *
+ * @param   {string} file
+ *
+ * @category File System
+ */
 export async function touch (file) {
   const stats = await linkStat(file);
   if (stats) {
@@ -34,6 +50,13 @@ export async function touch (file) {
   await fs.writeFile(file, '');
 }
 
+/**
+ * Deletes the file at the given path, if it exists.
+ *
+ * @param   {string} file
+ *
+ * @category File System
+ */
 export async function remove (file) {
   const stats = await linkStat(file);
   if (!stats) return;
@@ -41,6 +64,17 @@ export async function remove (file) {
   return fs.unlink(file);
 }
 
+/**
+ * Write the passed data structure to a file as JSON.
+ *
+ * @param   {string} file
+ * @param   {Object|Array} object
+ * @param   {Object} [options] Options for fs.writeFile
+ * @param   {string} [options.encoding] File encoding for the data, defaults to utf8
+ *
+ * @alias writeJSON
+ * @category File System
+ */
 export async function writeJson (file, object, options) {
   const { replacer, spaces, ...ops } = {
     encoding: 'utf8',
@@ -50,13 +84,26 @@ export async function writeJson (file, object, options) {
 }
 export const writeJSON = writeJson;
 
-export async function readJson (file, options) {
-  const { reviver, quiet, ...ops } = {
+/**
+ * Reads a JSON file from disk and parses its contents.
+ *
+ * @param   {string}   file
+ * @param   {Object}   [options] Options for fs.readFile
+ * @param   {Function} [options.reviver]
+ * @param   {boolean}  [options.quiet]
+ * @param   {string}   [options.encoding] File encoding for the data, defaults to utf8
+ *
+ * @returns {Object|Array|string|number|boolean}
+ * @alias readJSON
+ * @category File System
+ */
+export async function readJson (file, { reviver, quiet, ...options } = {}) {
+  options = {
     encoding: 'utf8',
     ...options,
   };
 
-  const content = await fs.readFile(file, ops);
+  const content = await fs.readFile(file, options);
   try {
     return JSON.parse(stripBom(content), reviver);
   } catch (err) {
@@ -67,6 +114,14 @@ export async function readJson (file, options) {
 export const readJSON = readJson;
 
 
+/**
+ * Removes the Byte Order Mark from a string
+ *
+ * @param   {string|Buffer} content
+ *
+ * @returns {string}
+ * @category File System
+ */
 function stripBom (content) {
   if (Buffer.isBuffer(content)) { content = content.toString('utf8'); }
   return content.replace(/^\uFEFF/, '');

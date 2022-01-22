@@ -1,27 +1,14 @@
 
-import { truthy } from './isType.js';
-import { flatten } from './collections.js';
+import { isTruthy } from './types.js';
+import flatten from './flatten.js';
 
-export function all (...args) {
-  let input;
-  if (args.length > 1) {
-    input = args;
-  } else {
-    input = flatten(args[0], 1);
-  }
-
-  let result = input.shift();
-  for (const value of input) {
-    if (!truthy(result)) {
-      return false;
-    }
-    result = value;
-  }
-
-  return result;
-}
-
-export function any (...args) {
+/**
+ * Tests any passed argument (or the contents of passed arrays) for truthiness.
+ *
+ * @param  {...any} args
+ * @returns {boolean} Returns true if any of the values are truthy.
+ */
+export default function any (...args) {
   let input;
   if (args.length > 1) {
     input = args;
@@ -30,14 +17,10 @@ export function any (...args) {
   }
 
   for (const value of input) {
-    if (truthy(value)) {
+    if (isTruthy(value)) {
       return value;
     }
   }
 
   return input[input.length - 1];
-}
-
-export function none (...args) {
-  return !any(...args);
 }

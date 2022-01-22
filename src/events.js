@@ -1,4 +1,7 @@
 
+/**
+ * Browser safe version of the node.js EventEmitter
+ */
 export default class EventEmitter {
   constructor () {
     this.__ee__ = new Map;

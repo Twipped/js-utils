@@ -1,37 +1,109 @@
-/* eslint no-console: 0 */
+/* eslint no-console: 0, jsdoc/check-param-names:0, jsdoc/require-param:0, jsdoc/require-returns:0 */
 
 import {
   isArray,
   isObject,
   isNumber,
   isString,
-} from './isType.js';
-import { noop } from './functions.js';
+} from './types.js';
 
-export function assert (ok, message, ...args) {
+/**
+ * Tests if the first argument is truthy, and throws the passed message if it is not.
+ *
+ * @param   {any}    ok      Value to test for truthiness
+ * @param   {string} message Message to be thrown on failure. `%s` placeholders are replaced
+ * in sequence with the arguments provided after the message.
+ * @param   {...any} substitutions Values to inject into the message on failure.
+ *
+ * @throws Error
+ * @category Errors
+ */
+export default function assert (ok, message, ...substitutions) {
   if (ok) return;
 
-  if (args.length) {
+  if (substitutions.length) {
     let argIndex = 0;
-    message = message.replace(/%s/g, () => args[argIndex++]);
+    message = message.replace(/%s/g, () => substitutions[argIndex++]);
   }
 
-  const error = new Error('Assertion Failed: \n' + message);
+  const error = new Error(`Assertion Failed: \n${message}`);
   error.framesToPop = 1; // ignore the assert call itself.
   throw error;
 }
 
-export const fail                = (...args) => assert(false, ...args);
-export const assertIsArray       = (ok, ...args) => assert(isArray(ok), ...args);
-export const assertIsObject      = (ok, ...args) => assert(isObject(ok), ...args);
-export const assertIsPlainObject = (ok, ...args) => assert(isObject(ok, true), ...args);
-export const assertIsString      = (ok, ...args) => assert(isString(ok), ...args);
-export const assertIsNumber      = (ok, ...args) => assert(isNumber(ok), ...args);
+/**
+ * Throws an Error with the given message
+ *
+ * @param   {string} message Message to be thrown on failure. `%s` placeholders are replaced
+ * in sequence with the arguments provided after the message.
+ * @param   {...any} substitutions Values to inject into the message on failure.
+ *
+ * @category Errors
+ */
+export const fail                = /* #__PURE__ */(...args) => assert(false, ...args);
 
-export const warn = process.env.NODE_ENV !== 'production'
-  ? (...args) => {
-    console.error(...args);
-  }
-  : noop;
 
-export const warning = (ok, ...args) => !ok && warn(...args);
+/**
+ * Tests if the first argument is an array, and throws the passed message if it is not.
+ *
+ * @param   {any}    ok      Value to test for truthiness
+ * @param   {string} message Message to be thrown on failure. `%s` placeholders are replaced
+ * in sequence with the arguments provided after the message.
+ * @param   {...any} substitutions Values to inject into the message on failure.
+ *
+ * @throws Error
+ * @category Errors
+ */
+export const assertIsArray       = /* #__PURE__ */(ok, ...args) => assert(isArray(ok), ...args);
+
+/**
+ * Tests if the first argument is object like, and throws the passed message if it is not.
+ *
+ * @param   {any}    ok      Value to test for truthiness
+ * @param   {string} message Message to be thrown on failure. `%s` placeholders are replaced
+ * in sequence with the arguments provided after the message.
+ * @param   {...any} substitutions Values to inject into the message on failure.
+ *
+ * @throws Error
+ * @category Errors
+ */
+export const assertIsObject      = /* #__PURE__ */(ok, ...args) => assert(isObject(ok), ...args);
+
+/**
+ * Tests if the first argument is a plain object, and throws the passed message if it is not.
+ *
+ * @param   {any}    ok      Value to test for truthiness
+ * @param   {string} message Message to be thrown on failure. `%s` placeholders are replaced
+ * in sequence with the arguments provided after the message.
+ * @param   {...any} substitutions Values to inject into the message on failure.
+ *
+ * @throws Error
+ * @category Errors
+ */
+export const assertIsPlainObject = /* #__PURE__ */(ok, ...args) => assert(isObject(ok, true), ...args); // eslint-disable-line max-len
+
+/**
+ * Tests if the first argument is a string, and throws the passed message if it is not.
+ *
+ * @param   {any}    ok      Value to test for truthiness
+ * @param   {string} message Message to be thrown on failure. `%s` placeholders are replaced
+ * in sequence with the arguments provided after the message.
+ * @param   {...any} substitutions Values to inject into the message on failure.
+ *
+ * @throws Error
+ * @category Errors
+ */
+export const assertIsString      = /* #__PURE__ */(ok, ...args) => assert(isString(ok), ...args);
+
+/**
+ * Tests if the first argument is a number, and throws the passed message if it is not.
+ *
+ * @param   {any}    ok      Value to test for truthiness
+ * @param   {string} message Message to be thrown on failure. `%s` placeholders are replaced
+ * in sequence with the arguments provided after the message.
+ * @param   {...any} substitutions Values to inject into the message on failure.
+ *
+ * @throws Error
+ * @category Errors
+ */
+export const assertIsNumber      = /* #__PURE__ */(ok, ...args) => assert(isNumber(ok), ...args);

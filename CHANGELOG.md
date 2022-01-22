@@ -1,4 +1,51 @@
 
+6.0.0 / 2022-04-23
+==================
+
+feat: Most functions are now available as direct subpath imports (eg, `@twipped/utils/entries`)
+
+feat: `omit` can now filter strings.
+
+feat: `empty` now supports numbers, dates and booleans.
+
+feat: `includes` now supports strings.
+
+feat: `anyOf`, `allOf` and `noneOf`:  Passing objects as criteria will new treat the object as an iteratee matching object predicate. If the object has a `$` key, then the value of that key will instead be used for the iteratee predicate
+
+feat: New function `delimit` to handle creation of delimited arrays
+
+feat: Added `resolveRef`, a react utility function for resolving a passed value that may be a ref.
+
+BREAKING CHANGE: All promise functions are now camel case (eg: ptry is not pTry)
+
+BREAKING CHANGE: pdefer and pdelay now support passing an AbortController signal.
+
+BREAKING CHANGE: truthy and falsy have replaced isTruthy and isFalsy
+
+BREAKING CHANGE: The old isTruthy and isFalsey have been removed.
+
+BREAKING CHANGE: `compare` has been deleted in favor of `equal`
+
+BREAKING CHANGE: `transcriber` has been deleted in favor of `mapper`
+
+BREAKING CHANGE: `deepPick` has been deleted in favor of `mapper`
+
+BREAKING CHANGE: `pathinate` has been deleted.
+
+BREAKING CHANGE: `join` no longer handles delimitation of collections, it now only joins into strings
+
+BREAKING CHANGE: `arrayify` has been deleted. The purpose of this function was never very clear, and it's behavior ambiguous.
+
+BREAKING CHANGE: `mapTable` has been deleted.
+
+fix: Minor speed improvement to `first` when length is 1
+
+fix: `pcoalesce` now uses isTruthy and will skip over invalid dates.
+
+fix: `preduce` now behaves correctly when an initial value is omitted.
+
+fix: Fixed numerous issues with `get`, `set` and `has`. All three now support bracket (eg: `[4]`) syntax in path queries.
+
 5.0.1 / 2021-12-20
 ==================
 
