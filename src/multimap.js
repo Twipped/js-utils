@@ -1,5 +1,5 @@
 
-import { DEFAULT } from './types.js';
+import DEFAULT from './default.js';
 
 const /** @constant {string} */ MODE_ENTRIES = 'ENTRIES';
 const /** @constant {string} */ MODE_VALUES  = 'VALUES';

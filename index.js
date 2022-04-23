@@ -28,6 +28,7 @@ export { default as collect } from './src/collect.js';
 export { default as concurrentExecution } from './src/concurrentExecution.js';
 export { default as convert } from './src/convert.js';
 export { default as deepEqual } from './src/deepEqual.js';
+export { default as DEFAULT, isDefault } from './src/default.js';
 export { default as defer } from './src/defer.js';
 export { default as delay } from './src/delay.js';
 export { default as delimit } from './src/delimit.js';

@@ -7,16 +7,6 @@
  * @global
  */
 
-
-/**
- * A Symbol which identifies a default value.
- *
- * @type {Symbol}
- * @category Types
- */
-export const DEFAULT = Symbol('DEFAULT');
-export const isDefault             = (input) => input === DEFAULT;
-
 /**
  * Tests if a given value is an Array
  *
