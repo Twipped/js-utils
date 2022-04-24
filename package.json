@@ -34,6 +34,7 @@
   },
   "files": [
     "src",
+    "index.js",
     "CHANGELOG.md",
     "LICENSE.txt",
     "README.md"
