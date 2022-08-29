@@ -91,6 +91,7 @@ export { default as pAll } from './src/pAll.js';
 export { default as parsePath } from './src/parsePath.js';
 export { default as passthru } from './src/passthru.js';
 export { default as pCoalesce } from './src/pCoalesce.js';
+export { default as pDebounce } from './src/pDebounce.js';
 export { default as pDefer } from './src/pDefer.js';
 export { default as pDelay } from './src/pDelay.js';
 export { default as pick } from './src/pick.js';
