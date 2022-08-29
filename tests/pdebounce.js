@@ -147,7 +147,11 @@ tap.test('pDebounce', async (s) => {
     debounced();
     await sleep(5);
     debounced();
+    await sleep(5);
     t.equal(callCount, 1);
+    debounced();
+    await sleep(25);
+    t.equal(callCount, 2);
   });
 
   s.test('maxWait splits requests into correct chunks', async (t) => {
