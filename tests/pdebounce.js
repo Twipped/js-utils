@@ -20,7 +20,7 @@ tap.test('pDebounce', async (s) => {
     const promises = [ 'foo', 'bar', 'baz', 'qux' ].map(debounced);
     const results = await Promise.all(promises);
 
-    t.deepEqual(results, [ 'qux', 'qux', 'qux', 'qux' ]);
+    t.same(results, [ 'qux', 'qux', 'qux', 'qux' ]);
   });
 
   s.test('if leading=true, the value from the first promise is used', async (t) => {
@@ -28,7 +28,7 @@ tap.test('pDebounce', async (s) => {
     const promises = [ 'foo', 'bar', 'baz', 'qux' ].map(debounced);
     const results = await Promise.all(promises);
 
-    t.deepEqual(results, [ 'foo', 'qux', 'qux', 'qux' ]);
+    t.same(results, [ 'foo', 'qux', 'qux', 'qux' ]);
   });
 
   s.test('do not call the given function repeatedly', async (t) => {
