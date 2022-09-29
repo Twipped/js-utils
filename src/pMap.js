@@ -31,5 +31,5 @@ export default async function pmap (collection, predicate, { concurrency = Infin
     collection = await Promise.all(Array.from(it, subpredicate));
   }
 
-  return fromPairs(collection, mode);
+  return fromPairs(collection, { mode });
 }
