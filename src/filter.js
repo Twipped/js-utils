@@ -32,7 +32,7 @@ export default function filter (collection, predicate) {
   case MAPMODE_MAP:
   case MAPMODE_OBJECT: {
     const pairs = Array.from(entries(collection)).filter(([ key, value ], i) => predicate(value, key, i));
-    return fromPairs(pairs, mode);
+    return fromPairs(pairs, { mode });
   }
 
   case MAPMODE_ITERABLE:
