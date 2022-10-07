@@ -89,6 +89,7 @@ jobs:
       with:
         node-version: lts/*
         cache: npm
+        registry-url: 'https://registry.npmjs.org'
 
     - name: Install Dependencies
       run: npm ci
