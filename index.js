@@ -1,8 +1,6 @@
 
 export * from './src/assert.js';
 export * from './src/camel.js';
-export * from './src/dom.js';
-export * from './src/fs.js';
 export * from './src/is.js';
 export * from './src/isArrayOf.js';
 export * from './src/iterateObject.js';
