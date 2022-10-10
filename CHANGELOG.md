@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/Twipped/js-utils/compare/v6.1.1...v7.0.0) (2022-10-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Removed dom and fs exports from the index file so that webpack doesn’t freak.
+
+### Bug Fixes
+
+* Removed dom and fs exports from the index file so that webpack doesn’t freak. ([289b801](https://github.com/Twipped/js-utils/commit/289b801b3d27aef24e955b8e6bf86ecb6a131089))
+
 ## [6.1.1](https://github.com/Twipped/js-utils/compare/v6.1.0...v6.1.1) (2022-09-29)
 
 
