@@ -14,7 +14,6 @@
     "lint": "eslint './{src,tests}/**/*.{js,jsx}'",
     "lint-fix": "eslint './{src,tests}/**/*.{js,jsx}' --fix",
     "docs": "jsdoc2md -t README.hbs src/*.js > README.md",
-    "release": "semantic-release"
   },
   "engines": {
     "node": ">=14.10.0"
@@ -26,19 +25,11 @@
     "url": "git://github.com/Twipped/js-utils"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.1",
-    "@semantic-release/commit-analyzer": "^9.0.2",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^8.0.4",
-    "@semantic-release/npm": "^9.0.1",
-    "@semantic-release/release-notes-generator": "^10.0.3",
-    "conventional-changelog-conventionalcommits": "^5.0.0",
     "eslint": "^8.23.0",
     "eslint-config-twipped": "^7.2.0",
     "jsdoc": "^3.6.11",
     "jsdoc-to-markdown": "~7.1.1",
     "pretty-format": "^29.0.1",
-    "semantic-release": "^19.0.5",
     "tap": "^16.3.0"
   },
   "files": [
@@ -50,7 +41,6 @@
   ],
   "publishConfig": {
     "access": "public"
-  },
   "eslintConfig": {
     "extends": [
       "twipped/node-esm"
@@ -72,34 +62,6 @@
         ],
         "extends": "twipped/node-esm"
       }
-    ]
-  },
-  "release": {
-    "preset": "conventionalcommits",
-    "branches": [
-      "main"
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
-      "@semantic-release/npm",
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "CHANGELOG.md",
-            "README.md",
-            "package.json"
-          ]
-        }
-      ],
-      "@semantic-release/github"
     ]
   }
 }
