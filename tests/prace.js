@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { pDelay, pRace } from '../index.js';
+import { pDelay, pRace } from '../src/index.js';
 
 tap.test('promise race', async (t) => {
 

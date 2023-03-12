@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { iterateObject } from '../index.js';
+import { iterateObject } from '../src/index.js';
 
 tap.test('iterateObject', async (t) => {
 

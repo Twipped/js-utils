@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { equal } from '../index.js';
+import { equal } from '../src/index.js';
 
 tap.test('object integers', async (t) => {
 

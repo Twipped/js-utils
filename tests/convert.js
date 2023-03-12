@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { distance } from '../index.js';
+import { distance } from '../src/index.js';
 
 tap.test('sf to m', async (t) => {
 

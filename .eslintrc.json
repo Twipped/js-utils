@@ -4,7 +4,16 @@
   ],
   "rules": {
     "jsdoc/require-jsdoc": "warn",
-    "one-var": "off"
+    "one-var": "off",
+    "jsdoc/check-tag-names": [ "error", {
+      "jsxTags": true,
+      "definedTags": [
+        "category",
+        "component",
+        "hidden",
+        "internal"
+      ]
+    } ]
   },
   "overrides": [
     {

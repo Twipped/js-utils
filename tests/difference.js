@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { difference } from '../index.js';
+import { difference } from '../src/index.js';
 
 tap.test('difference', async (t) => {
 

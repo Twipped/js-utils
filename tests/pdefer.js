@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { pDefer } from '../index.js';
+import { pDefer } from '../src/index.js';
 
 tap.test('pDefer()', async (s) => {
   s.test('works', async (t) => {

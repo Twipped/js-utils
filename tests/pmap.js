@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { pMap, pDelay } from '../index.js';
+import { pMap, pDelay } from '../src/index.js';
 
 const array = [ 100, 110, 70, 10, 11, 150, 220, 250 ];
 

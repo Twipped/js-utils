@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { intersect } from '../index.js';
+import { intersect } from '../src/index.js';
 
 tap.test('intersect', async (t) => {
 

@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { uniq } from '../index.js';
+import { uniq } from '../src/index.js';
 
 tap.test('uniq array', async (t) => {
 

@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { memoize } from '../index.js';
+import { memoize } from '../src/index.js';
 
 var value = 0;
 

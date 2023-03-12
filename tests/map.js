@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { map } from '../index.js';
+import { map } from '../src/index.js';
 
 tap.test('map object', async (t) => {
   const targets = {

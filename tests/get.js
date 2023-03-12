@@ -1,6 +1,6 @@
 import tap from 'tap';
 import { format as pretty } from 'pretty-format';
-import { get } from '../index.js';
+import { get } from '../src/index.js';
 
 tap.test('get()', async (s) => {
   s.test('should get string keyed property values', async (t) => {

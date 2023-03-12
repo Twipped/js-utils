@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { pDelay } from '../index.js';
+import { pDelay } from '../src/index.js';
 
 tap.test('pDelay()', async (s) => {
   s.test('works', async (t) => {

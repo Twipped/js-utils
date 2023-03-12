@@ -1,20 +1,20 @@
-import {isPromise} from './types.js';
+import { isPromise } from './types.js';
 
 /**
  * Basic little wrapper that ensures we always get a promise back.
  *
- * @param fn
+ * @param {Function} fn
  * @param {...any} args
  * @private
  */
-async function wrapPromise(fn, ...args) {
+async function wrapPromise (fn, ...args) {
   const res = await fn(...args);
   return res;
 }
 const suspensions = new Map();
 
 class Failed {
-  constructor(err) {
+  constructor (err) {
     this.err = err;
   }
 }
@@ -44,7 +44,7 @@ class Failed {
  * @param {TaskCallback} fn The async task to perform.
  * @returns {any}
  */
-export default function suspend(key, fn) {
+export default function suspend (key, fn) {
   if (typeof key !== 'string') throw new Error('suspend must receive a string key to test against.');
 
   const cached = suspensions.get(key);
@@ -80,7 +80,7 @@ export default function suspend(key, fn) {
  *
  * @param {string} key The operation name to remove.
  */
-export function resetSuspension(key) {
+export function resetSuspension (key) {
   suspensions.delete(key);
 }
 

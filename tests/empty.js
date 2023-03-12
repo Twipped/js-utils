@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { empty } from '../index.js';
+import { empty } from '../src/index.js';
 
 tap.test('empty()', async (t) => {
 

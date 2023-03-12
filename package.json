@@ -21,8 +21,8 @@
   "scripts": {
     "test": "tap -R base --no-coverage tests",
     "cover": "tap -R terse --coverage tests",
-    "lint": "eslint './{src,tests}/**/*.{js,jsx}'",
-    "lint-fix": "eslint './{src,tests}/**/*.{js,jsx}' --fix",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
     "docs": "rimraf docs && typedoc src/*.js --out docs --readme none --hideBreadcrumbs",
     "build": "rimraf dist && npm run build:cjs && npm run build:mjs && npm run build:types",
     "build:cjs":       "babel src --out-dir dist --out-file-extension .cjs --ignore '**/__test__/*'",
