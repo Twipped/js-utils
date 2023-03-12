@@ -71,6 +71,18 @@ import * as u from '@twipped/utils';
 **Returns**: <code>boolean</code> - Returns true if all items in the array are falsey.
 
 
+### [resetSuspension](#resetSuspension) 
+Removes a stored async result from the suspense cache, allowing
+it to be invoked again on next render.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>string</code> | The operation name to remove. |
+
+
+
+
 ### [containsArrays](#containsArrays) 
 **Category**: Collections  
 **Returns**: <code>boolean</code> - Returns true if any items in the array are arrays.
@@ -1186,6 +1198,24 @@ Produce a collection without certain values
 
 
 ### [module.exports](#module-exports) 
+Produces a promise aware debounced function that delays invoking `func` until
+after `wait` milliseconds have elapsed since the last time the debounced
+function was invoked.
+
+
+| Param | Type |
+| --- | --- |
+| func | <code>function</code> | 
+| wait | <code>number</code> | 
+| options | <code>Object</code> | 
+| options.leading | <code>boolean</code> | 
+| options.maxWait | <code>number</code> | 
+| options.context | <code>\*</code> | 
+
+**Returns**: <code>function</code>
+
+
+### [module.exports](#module-exports) 
 Produce a collection containing only certain values
 
 
@@ -1281,6 +1311,29 @@ Produces a sorting function using predicate logic.
 | match | [<code>Predicate</code>](#Predicate) | Iteratee predicate descriptor |
 
 **Returns**: <code>function</code>
+
+
+### [module.exports](#module-exports) 
+Performs an asyncronous task in a manner compatible with
+the React Suspension API.
+
+Note, if you don't know how Suspension works, you probably
+shouldn't use this function.
+
+This will execute the given function and throw the promise it
+produces so that React.Suspense can await its completion, dismounting
+your component while it completes. When the promise finishes,
+React.Suspense will remount your component, invoking this function again.
+At that point, this function returns the resolved value for the rest of
+the life of the application.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>string</code> | A name for this operation that is unique across your entire application (including multiple instances of your component). |
+| fn | [<code>TaskCallback</code>](#TaskCallback) | The async task to perform. |
+
+**Returns**: <code>any</code>
 
 
 ### [module.exports](#module-exports) 
