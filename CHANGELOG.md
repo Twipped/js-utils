@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.0](https://github.com/Twipped/js-utils/compare/v7.0.0...v7.1.0) (2023-03-12)
+
+
+### Features
+
+* Now exports both commonjs and esm builds, with type definitions ([0c2e1c4](https://github.com/Twipped/js-utils/commit/0c2e1c40347b1d81e3a42be324a9acd87743e5c8))
+* **suspend:** New function to simplify React Suspension use-cases ([64808ec](https://github.com/Twipped/js-utils/commit/64808ec06312a78a966d43f4713503a72260ba42))
+
 ## [7.0.0](https://github.com/Twipped/js-utils/compare/v6.1.1...v7.0.0) (2022-10-10)
 
 
