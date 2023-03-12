@@ -1,6 +1,6 @@
 
 import tap from 'tap';
-import { pDebounce } from '../index.js';
+import pDebounce from '../src/pDebounce.js';
 
 function sleep (ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));

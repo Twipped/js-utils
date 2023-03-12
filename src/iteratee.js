@@ -180,4 +180,6 @@ export default function iteratee (match) {
       return true;
     };
   }
+
+  throw new Error('Received an unusable predicate');
 }

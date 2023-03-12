@@ -24,4 +24,6 @@ export default function last (input, count = 1) {
   if (isSet(input)) return Array.from(input).slice(-count);
   if (isObject(input)) return Object.values(input).slice(-count);
   if (isMap(input)) return Array.from(input.values()).slice(-count);
+
+  throw new Error('Received an non-collection');
 }
