@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "@twipped/eslint-config/node-esm"
+  ],
+  "rules": {
+    "jsdoc/require-jsdoc": "warn",
+    "one-var": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "./src/dom.js"
+      ],
+      "extends": "@twipped/eslint-config/browser"
+    },
+    {
+      "files": [
+        "./tests/*"
+      ],
+      "extends": "@twipped/eslint-config/node-esm"
+    },
+    {
+      "files": "**.cjs",
+      "extends": "@twipped/eslint-config/node-cjs"
+    }
+  ]
+}

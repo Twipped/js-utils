@@ -25,12 +25,13 @@
     "url": "git://github.com/Twipped/js-utils"
   },
   "devDependencies": {
-    "eslint": "^8.23.0",
-    "eslint-config-twipped": "^7.2.0",
-    "jsdoc": "^3.6.11",
-    "jsdoc-to-markdown": "~7.1.1",
-    "pretty-format": "^29.0.1",
-    "tap": "^16.3.0"
+    "@twipped/eslint-config": "^7.5.2",
+    "eslint": "^8.36.0",
+    "jsdoc": "^4.0.2",
+    "jsdoc-to-markdown": "^8.0.0",
+    "pretty-format": "^29.5.0",
+    "tap": "^16.3.4",
+    "typescript": "^4.9.5"
   },
   "files": [
     "src",
@@ -41,27 +42,5 @@
   ],
   "publishConfig": {
     "access": "public"
-  "eslintConfig": {
-    "extends": [
-      "twipped/node-esm"
-    ],
-    "rules": {
-      "jsdoc/require-jsdoc": "warn",
-      "one-var": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "./src/dom.js"
-        ],
-        "extends": "twipped/browser"
-      },
-      {
-        "files": [
-          "./tests/*"
-        ],
-        "extends": "twipped/node-esm"
-      }
-    ]
   }
 }
