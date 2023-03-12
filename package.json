@@ -5,8 +5,18 @@
   "type": "module",
   "main": "./index.js",
   "exports": {
-    ".": "./index.js",
-    "./*": "./src/*.js"
+    ".": {
+      "webpack": "./src/index.js",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": {
+      "webpack": "./src/*.js",
+      "import": "./dist/*.mjs",
+      "require": "./dist/*.cjs",
+      "types": "./dist/*.d.ts"
+    }
   },
   "scripts": {
     "test": "tap -R base --no-coverage tests",
@@ -14,6 +24,10 @@
     "lint": "eslint './{src,tests}/**/*.{js,jsx}'",
     "lint-fix": "eslint './{src,tests}/**/*.{js,jsx}' --fix",
     "docs": "jsdoc2md -t README.hbs src/*.js > README.md",
+    "build": "rimraf dist && npm run build:cjs && npm run build:mjs && npm run build:types",
+    "build:cjs":       "babel src --out-dir dist --out-file-extension .cjs --ignore '**/__test__/*'",
+    "build:mjs": "ESM=1 babel src --out-dir dist --out-file-extension .mjs --ignore '**/__test__/*'",
+    "build:types": "tsc"
   },
   "engines": {
     "node": ">=14.10.0"
@@ -25,7 +39,10 @@
     "url": "git://github.com/Twipped/js-utils"
   },
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.0",
     "@twipped/eslint-config": "^7.5.2",
+    "babel-plugin-add-import-extension": "^1.6.0",
     "eslint": "^8.36.0",
     "jsdoc": "^4.0.2",
     "jsdoc-to-markdown": "^8.0.0",
