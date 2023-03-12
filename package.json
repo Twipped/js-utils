@@ -52,7 +52,8 @@
   },
   "files": [
     "src",
-    "index.js",
+    "dist",
+    "docs",
     "CHANGELOG.md",
     "LICENSE.txt",
     "README.md"
