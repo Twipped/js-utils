@@ -1,6 +1,6 @@
 {
   "name": "@twipped/utils",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "A collection of commonly used utility functions",
   "type": "module",
   "main": "./index.js",
@@ -25,7 +25,7 @@
     "lint-fix": "eslint . --fix",
     "docs": "rimraf docs && typedoc src/*.js --out docs --readme none --hideBreadcrumbs",
     "build": "rimraf dist && npm run build:cjs && npm run build:mjs && npm run build:types",
-    "build:cjs":       "babel src --out-dir dist --out-file-extension .cjs --ignore '**/__test__/*'",
+    "build:cjs": "babel src --out-dir dist --out-file-extension .cjs --ignore '**/__test__/*'",
     "build:mjs": "ESM=1 babel src --out-dir dist --out-file-extension .mjs --ignore '**/__test__/*'",
     "build:types": "tsc"
   },
