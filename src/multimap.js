@@ -16,9 +16,16 @@ const /** @constant {Symbol} */ EMPTY_KEY = Symbol('EMPTY_KEY');
 /**
  * Dictionary map which stores values using key sets, rather than single keys.
  *
+ * @class MultiMap
  * @category Data
  */
 export default class MultiMap {
+
+  /** @hidden */
+  _trunk = null;
+
+  /** @hidden */
+  _count = 0;
 
   constructor () {
     this.clear();
@@ -104,7 +111,7 @@ export default class MultiMap {
 }
 
 /**
- * @private
+ * @internal
  */
 class Limb {
   constructor (parent, key) {
