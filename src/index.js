@@ -116,6 +116,7 @@ export { default as stripIndent } from './stripIndent.js';
 export { default as sum } from './sum.js';
 export { default as suspend, resetSuspension } from './suspend.js';
 export { default as threepiece } from './threepiece.js';
+export { default as throttle } from './throttle.js';
 export { default as timeout } from './timeout.js';
 export { default as toPairs } from './toPairs.js';
 export { default as uc } from './uc.js';
