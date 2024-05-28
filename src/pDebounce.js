@@ -7,7 +7,7 @@ import { isFunction } from './types.js';
  *
  * @param   {Function} func
  * @param   {number}   wait
- * @param   {Object}   options
+ * @param   {object}   options
  * @param   {boolean}  options.leading
  * @param   {number}   options.maxWait
  * @param   {*}        options.context

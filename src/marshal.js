@@ -39,7 +39,7 @@ const isMarshalMap = (input) => {
  * @param   {Predicate} predicate
  * @param   {string} rest
  *
- * @returns {Object}
+ * @returns {object}
  * @category Data
  */
 export default function marshal (collection, predicate, rest = 'UNKNOWN') {

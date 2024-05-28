@@ -25,8 +25,8 @@ tap.test('first', async (t) => {
   ];
 
   for (const input of inputs) {
-    t.same(first(input   ), 1,        'single value' + input);
-    t.same(first(input, 2), [ 1, 2 ], 'multiple values' + input);
+    t.same(first(input ), 1, `single value${input}`);
+    t.same(first(input, 2), [ 1, 2 ], `multiple values${input}`);
   }
 });
 

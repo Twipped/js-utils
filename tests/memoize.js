@@ -120,7 +120,7 @@ tap.test('multiple arguments', async (t) => {
   t.equal(fn('B', arr2, 1), 3, 'Fourth call invokes');
   t.equal(fn('A', arr1, 1), 1, 'Fifth call w/original arguments returns original');
   t.equal(fn('B', arr2, 2), 4, 'Sixth call invokes');
-  t.equal(fn('A',  obj, 1), 5, 'Seventh call invokes');
+  t.equal(fn('A', obj, 1), 5, 'Seventh call invokes');
 
   fn.purge('B', arr2, 1);
   t.equal(fn('B', arr2, 1), 6, 'Purged arguments re-invoke');

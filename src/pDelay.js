@@ -6,7 +6,7 @@ import AbortError from './abort-error-exception.js';
  *
  * @function pDelay
  * @param   {number} duration Delay duration in milliseconds
- * @param   {Object} [options] Options
+ * @param   {object} [options] Options
  * @param   {AbortSignal} [options.signal] Signal from an AbortController
  *
  * @returns {Promise}

@@ -13,7 +13,10 @@ export default async function pCoalesce (...promises) {
   let count = promises.length;
   return new Promise((resolve, reject) => {
     const fin = (res) => {
-      if (isTruthy(res) || count <= 0) return resolve(res);
+      if (isTruthy(res) || count <= 0) {
+        resolve(res);
+        return;
+      }
       count--;
     };
 

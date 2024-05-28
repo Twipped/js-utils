@@ -18,7 +18,7 @@ import hasOwn from './hasOwn.js';
  * Supports using wildcards in paths to iterate over all keys of an
  * object or array.
  *
- * @param   {Object|Array} target Structure to get a value from.
+ * @param   {object | Array} target Structure to get a value from.
  * @param   {string|Array<string|number>} path Property Key, dot-notation path,
  * or array of key names which describes the target value.
  *
@@ -45,7 +45,7 @@ export default function collect (target, path) {
   /**
    * Object Descender
    *
-   * @param   {Object|Array} res Structure to get a value from.
+   * @param   {object | Array} res Structure to get a value from.
    * @param   {string|Array<string|number>} level Property Key, dot-notation path,
    * or array of key names which describes the target value.
    * @private

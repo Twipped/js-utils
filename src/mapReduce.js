@@ -12,7 +12,7 @@ import entries from './entries.js';
  *
  * @param  {Collection} collection
  * @param  {Function} predicate
- * @returns {Object}
+ * @returns {object}
  */
 export default function mapReduce (collection, predicate) {
   if (!collection) return {};

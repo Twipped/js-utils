@@ -15,7 +15,7 @@
  * @returns {boolean}
  * @category Types
  */
-export const isArray               = Array.isArray;
+export const isArray = Array.isArray;
 
 /**
  * Tests if a given value is a Number
@@ -25,7 +25,7 @@ export const isArray               = Array.isArray;
  * @returns {boolean}
  * @category Types
  */
-export const isNumber              = (input) => typeof input === 'number' && !Number.isNaN(input);
+export const isNumber = (input) => typeof input === 'number' && !Number.isNaN(input);
 
 /**
  * Tests if a given value is a Boolean
@@ -35,7 +35,7 @@ export const isNumber              = (input) => typeof input === 'number' && !Nu
  * @returns {boolean}
  * @category Types
  */
-export const isBoolean             = (input) => typeof input === 'boolean';
+export const isBoolean = (input) => typeof input === 'boolean';
 
 /**
  * Tests if a given value is a String
@@ -45,7 +45,7 @@ export const isBoolean             = (input) => typeof input === 'boolean';
  * @returns {boolean}
  * @category Types
  */
-export const isString              = (input) => typeof input === 'string';
+export const isString = (input) => typeof input === 'string';
 
 /**
  * Tests if a given value is a Function
@@ -55,7 +55,7 @@ export const isString              = (input) => typeof input === 'string';
  * @returns {boolean}
  * @category Types
  */
-export const isFunction            = (input) => typeof input === 'function';
+export const isFunction = (input) => typeof input === 'function';
 
 /**
  * Tests if a given value is Null
@@ -65,7 +65,7 @@ export const isFunction            = (input) => typeof input === 'function';
  * @returns {boolean}
  * @category Types
  */
-export const isNull                = (input) => input === null;
+export const isNull = (input) => input === null;
 
 /**
  * Tests if a given value is Undefined
@@ -75,7 +75,7 @@ export const isNull                = (input) => input === null;
  * @returns {boolean}
  * @category Types
  */
-export const isUndefined           = (input) => typeof input === 'undefined';
+export const isUndefined = (input) => typeof input === 'undefined';
 
 /**
  * Tests if a given value is Undefined or Null
@@ -85,7 +85,7 @@ export const isUndefined           = (input) => typeof input === 'undefined';
  * @returns {boolean}
  * @category Types
  */
-export const isUndefinedOrNull     = (input) => input === null || typeof input === 'undefined';
+export const isUndefinedOrNull = (input) => input === null || typeof input === 'undefined';
 
 /**
  * Tests if a given value is NOT Undefined or Null
@@ -95,7 +95,7 @@ export const isUndefinedOrNull     = (input) => input === null || typeof input =
  * @returns {boolean}
  * @category Types
  */
-export const isNotUndefinedOrNull  = (input) => input !== null && typeof input !== 'undefined';
+export const isNotUndefinedOrNull = (input) => input !== null && typeof input !== 'undefined';
 
 /**
  * Tests if a given value is an ECMA Map
@@ -105,7 +105,7 @@ export const isNotUndefinedOrNull  = (input) => input !== null && typeof input !
  * @returns {boolean}
  * @category Types
  */
-export const isMap                 = (input) => input instanceof Map;
+export const isMap = (input) => input instanceof Map;
 
 /**
  * Tests if a given value is an ECMA Set
@@ -115,7 +115,7 @@ export const isMap                 = (input) => input instanceof Map;
  * @returns {boolean}
  * @category Types
  */
-export const isSet                 = (input) => input instanceof Set;
+export const isSet = (input) => input instanceof Set;
 
 /**
  * Tests if a given value is an ECMA Date object
@@ -125,7 +125,7 @@ export const isSet                 = (input) => input instanceof Set;
  * @returns {boolean}
  * @category Types
  */
-export const isDate                = (input) => input instanceof Date;
+export const isDate = (input) => input instanceof Date;
 
 /**
  * Tests if a given value is a Regular Expression object
@@ -135,7 +135,7 @@ export const isDate                = (input) => input instanceof Date;
  * @returns {boolean}
  * @category Types
  */
-export const isRegExp              = (input) => input instanceof RegExp;
+export const isRegExp = (input) => input instanceof RegExp;
 
 /**
  * Tests if a given value is strictly true
@@ -145,7 +145,7 @@ export const isRegExp              = (input) => input instanceof RegExp;
  * @returns {boolean}
  * @category Types
  */
-export const isTrue                = (input) => input === true;
+export const isTrue = (input) => input === true;
 
 /**
  * Tests if a given value is strictly false
@@ -155,7 +155,7 @@ export const isTrue                = (input) => input === true;
  * @returns {boolean}
  * @category Types
  */
-export const isFalse               = (input) => input === false;
+export const isFalse = (input) => input === false;
 
 /**
  * Tests if a given value is an Array or Set
@@ -165,7 +165,7 @@ export const isFalse               = (input) => input === false;
  * @returns {boolean}
  * @category Types
  */
-export const isList                = (input) => isArray(input) || isSet(input);
+export const isList = (input) => isArray(input) || isSet(input);
 
 /**
  * Tests if a given value is an Object or Map
@@ -175,7 +175,7 @@ export const isList                = (input) => isArray(input) || isSet(input);
  * @returns {boolean}
  * @category Types
  */
-export const isDict                = (input) => isObject(input) || isMap(input);
+export const isDict = (input) => isObject(input) || isMap(input);
 
 /**
  * Tests if a given value meets the Iterator interface
@@ -185,7 +185,7 @@ export const isDict                = (input) => isObject(input) || isMap(input);
  * @returns {boolean}
  * @category Types
  */
-export const isIterator            = (input) => isObject(input) && isFunction(input.next);
+export const isIterator = (input) => isObject(input) && isFunction(input.next);
 
 /**
  * Tests if a given value meets the Promise interface
@@ -195,7 +195,7 @@ export const isIterator            = (input) => isObject(input) && isFunction(in
  * @returns {boolean}
  * @category Types
  */
-export const isPromise             = (input) => isObject(input) && isFunction(input.then);
+export const isPromise = (input) => isObject(input) && isFunction(input.then);
 
 const GeneratorFunction = (function* G () { yield undefined; }).constructor;
 

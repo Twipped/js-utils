@@ -2,7 +2,7 @@
 import assert from './assert.js';
 
 /**
- * @typedef {Object} Unit
+ * @typedef {object} Unit
  * @property {Array<string>} names
  * @property {number} ratio
  */

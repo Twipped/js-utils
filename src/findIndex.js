@@ -38,4 +38,5 @@ export default function findIndex (collection, predicate) {
     return false;
   // no default
   }
+  return undefined;
 }

@@ -12,7 +12,7 @@ import parsePath from './parsePath.js';
  * Deeply searches for a value in a nested object structure and returns true
  * if a value is found.
  *
- * @param   {Object|Array} target Structure to get a value from.
+ * @param   {object | Array} target Structure to get a value from.
  * @param   {string|Array<string|number>} path Property Key, dot-notation path,
  * or array of key names which describes the target value.
  *

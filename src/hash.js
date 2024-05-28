@@ -27,8 +27,8 @@ export default function hash (input) {
   }
   let h = 0;
   for (let i = 0; i < input.length; i += 1) {
-    const chr   = input.charCodeAt(i);
-    h  = ((h << 5) - h) + chr;
+    const chr = input.charCodeAt(i);
+    h = ((h << 5) - h) + chr;
     h |= 0; // Convert to 32bit integer
   }
   return h;

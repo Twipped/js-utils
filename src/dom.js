@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* global Predicate */
 
 import iteratee from './iteratee.js';

@@ -6,7 +6,7 @@ import mapReduce from './mapReduce.js';
 /**
  * Produce a collection without certain values
  *
- * @param   {Object|Array} collection
+ * @param   {object | Array} collection
  * @param   {Predicate} predicate
  *
  * @returns {Collection}

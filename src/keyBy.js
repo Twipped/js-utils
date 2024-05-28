@@ -8,7 +8,7 @@ import mapReduce from './mapReduce.js';
  * @param   {Collection} collection
  * @param   {Predicate} predicate
  *
- * @returns {Object}
+ * @returns {object}
  */
 export default function keyBy (collection, predicate) {
   predicate = iteratee(predicate);

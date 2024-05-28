@@ -5,9 +5,9 @@ import {
 /**
  * Combines multiple objects into one, recursively.
  *
- * @param   {...Object} sources Objects to copy.
+ * @param   {...object} sources Objects to copy.
  *
- * @returns {Object}
+ * @returns {object}
  * @category Data
  */
 export default function merge (...sources) {

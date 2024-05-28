@@ -3,7 +3,7 @@ import tap from 'tap';
 import { pDebounce } from '../src/index.js';
 
 function sleep (ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => { setTimeout(resolve, ms); });
 }
 
 tap.test('pDebounce', async (s) => {

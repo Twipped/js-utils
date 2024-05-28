@@ -2,9 +2,9 @@
 import DEFAULT from './default.js';
 
 const /** @constant {string} */ MODE_ENTRIES = 'ENTRIES';
-const /** @constant {string} */ MODE_VALUES  = 'VALUES';
-const /** @constant {string} */ MODE_KEYS    = 'KEYS';
-const /** @constant {string} */ MODE_LEAVES  = 'LEAVES';
+const /** @constant {string} */ MODE_VALUES = 'VALUES';
+const /** @constant {string} */ MODE_KEYS = 'KEYS';
+const /** @constant {string} */ MODE_LEAVES = 'LEAVES';
 const /** @constant {Symbol} */ EMPTY_KEY = Symbol('EMPTY_KEY');
 /** @enum {string} */ export const ITERATOR_MODE = {
   [MODE_ENTRIES]: MODE_ENTRIES,
@@ -126,7 +126,7 @@ class Limb {
   }
 
   climb (key, ...grips) {
-    if (!this._limbs.has(key)) return;
+    if (!this._limbs.has(key)) return undefined;
     const limb = this._limbs.get(key);
     if (!grips.length) return limb._leaf;
     return limb.climb(...grips);

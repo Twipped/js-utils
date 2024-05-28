@@ -12,7 +12,7 @@ import mapReduce from './mapReduce.js';
  * Produces a collection from an array of key/value tuples.
  *
  * @param   {Array<Array<any,any>>} pairs
- * @param   {Object} options
+ * @param   {object} options
  * @param   {MAPMODE} [options.mode] Type of collection to produce. Defaults to Object.
  *
  * @returns {Collection}
@@ -36,4 +36,5 @@ export default function fromPairs (pairs, { mode = MAPMODE_OBJECT } = {}) {
 
   // no default
   }
+  return undefined;
 }

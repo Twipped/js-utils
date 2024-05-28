@@ -12,7 +12,7 @@ import { isDate } from './types.js';
  * @returns {number|Date}
  * @category Math
  */
-export default function clamp (value, minv = -Infinity, maxv = Infinity, nearest) {
+export default function clamp (value, minv = -Infinity, maxv = Infinity, nearest = undefined) {
   if (value === undefined || value === null || value === '') return null;
   if (minv === undefined || minv === null || minv === '') minv = -Infinity;
   if (maxv === undefined || maxv === null || maxv === '') maxv = Infinity;

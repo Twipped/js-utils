@@ -5,7 +5,7 @@
  *
  * @function clr
  * @param   {string|Array<string>} input
- * @param   {Object} classMap
+ * @param   {object} classMap
  *
  * @returns {string}
  * @category Text

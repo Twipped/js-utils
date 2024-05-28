@@ -11,7 +11,7 @@ import {
 /**
  * Returns the last iterate values in the collection.
  *
- * @param {Array|Set|Object|Map|string} input
+ * @param {Array | Set | object | Map | string} input
  * @param {number} [count=1]
  * @returns {any|Array<any>}
  */

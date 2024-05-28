@@ -13,7 +13,7 @@ const NOT_FOUND = Symbol('NOT_FOUND');
 /**
  * Deeply extracts a value from a nested object structure.
  *
- * @param   {Object|Array} target Structure to get a value from.
+ * @param   {object | Array} target Structure to get a value from.
  * @param   {string|Array<string|number>} path Property Key, dot-notation path,
  * or array of key names which describes the target value.
  * @param   {any} [defaultValue] The value to return if the path

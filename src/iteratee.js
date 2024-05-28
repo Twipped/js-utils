@@ -89,7 +89,7 @@ import get from './get.js';
  * Object: get(iValue, key) === value
  * Map: iValue.get(key) === value
  *
- * @typedef {Object} ObjectPredicate
+ * @typedef {object} ObjectPredicate
  * @global
  */
 

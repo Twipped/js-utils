@@ -30,7 +30,7 @@
     "build:types": "tsc"
   },
   "engines": {
-    "node": ">=14.10.0"
+    "node": ">=18.18.0"
   },
   "author": "Jocelyn Badgley <joc@twipped.com> (http://twipped.com)",
   "license": "MIT",

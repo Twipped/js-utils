@@ -13,11 +13,11 @@ import parsePath from './parsePath.js';
  * Follows the given path through an object structure to set the given value,
  * creating objects within the structure as needed.
  *
- * @param {Object} target
+ * @param {object} target
  * @param {string|Array<string>} path
  * @param {any} value Value to set
  *
- * @returns {Object}
+ * @returns {object}
  * @category Data
  */
 export default function set (target, path, value) {

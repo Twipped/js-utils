@@ -12,7 +12,7 @@ import fromPairs from './fromPairs.js';
  *
  * @param   {Collection} collection
  * @param   {Predicate} predicate
- * @param   {Object} [options]
+ * @param   {object} [options]
  * @param   {number} [options.concurrency=Infinity]
  *
  * @returns {Promise}

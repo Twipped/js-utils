@@ -5,6 +5,7 @@ import { isPromise } from './types.js';
  *
  * @param {Function} fn
  * @param {...any} args
+ * @returns {Promise}
  * @private
  */
 async function wrapPromise (fn, ...args) {

@@ -10,10 +10,10 @@ import entries from './entries.js';
 /**
  * Iterates over an object's properties, transforming the values with a predicate
  *
- * @param   {Object} collection
+ * @param   {object} collection
  * @param   {Predicate} predicate
  *
- * @returns {Object}
+ * @returns {object}
  */
 export default function mapValues (collection, predicate) {
   assert(isMap(collection) || isObject(collection, true), 'mapValues only works for simple objects, use mapReduce.');

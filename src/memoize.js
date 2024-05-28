@@ -10,10 +10,10 @@ import {
  * and will self-invalidate if a promise rejects.
  *
  * @param   {Function} fn
- * @param   {Object}   [options]
+ * @param   {object}   [options]
  * @param   {number}   [options.maxAge] Duration the cache should survive,
  * in microseconds. Default is 0 (infinite)
- * @param   {Object}   [options.context]
+ * @param   {object}   [options.context]
  *
  * @returns {any|Promise<any>}
  * @category Functional

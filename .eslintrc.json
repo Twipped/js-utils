@@ -5,6 +5,9 @@
   "rules": {
     "jsdoc/require-jsdoc": "warn",
     "one-var": "off",
+    "no-param-reassign": "off",
+    "no-return-assign": "off",
+    "no-unused-expressions": "off",
     "jsdoc/check-tag-names": [ "error", {
       "jsxTags": true,
       "definedTags": [
@@ -26,6 +29,9 @@
       "files": [
         "./tests/*"
       ],
+      "rules": {
+        "consistent-return": "off"
+      },
       "extends": "@twipped/eslint-config/node-esm"
     },
     {

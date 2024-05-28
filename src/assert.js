@@ -40,7 +40,7 @@ export default function assert (ok, message, ...substitutions) {
  *
  * @category Errors
  */
-export const fail                = /* #__PURE__ */(...args) => assert(false, ...args);
+export const fail = /* #__PURE__ */(...args) => assert(false, ...args);
 
 
 /**
@@ -54,7 +54,7 @@ export const fail                = /* #__PURE__ */(...args) => assert(false, ...
  * @throws Error
  * @category Errors
  */
-export const assertIsArray       = /* #__PURE__ */(ok, ...args) => assert(isArray(ok), ...args);
+export const assertIsArray = /* #__PURE__ */(ok, ...args) => assert(isArray(ok), ...args);
 
 /**
  * Tests if the first argument is object like, and throws the passed message if it is not.
@@ -67,7 +67,7 @@ export const assertIsArray       = /* #__PURE__ */(ok, ...args) => assert(isArra
  * @throws Error
  * @category Errors
  */
-export const assertIsObject      = /* #__PURE__ */(ok, ...args) => assert(isObject(ok), ...args);
+export const assertIsObject = /* #__PURE__ */(ok, ...args) => assert(isObject(ok), ...args);
 
 /**
  * Tests if the first argument is a plain object, and throws the passed message if it is not.
@@ -93,7 +93,7 @@ export const assertIsPlainObject = /* #__PURE__ */(ok, ...args) => assert(isObje
  * @throws Error
  * @category Errors
  */
-export const assertIsString      = /* #__PURE__ */(ok, ...args) => assert(isString(ok), ...args);
+export const assertIsString = /* #__PURE__ */(ok, ...args) => assert(isString(ok), ...args);
 
 /**
  * Tests if the first argument is a number, and throws the passed message if it is not.
@@ -106,4 +106,4 @@ export const assertIsString      = /* #__PURE__ */(ok, ...args) => assert(isStri
  * @throws Error
  * @category Errors
  */
-export const assertIsNumber      = /* #__PURE__ */(ok, ...args) => assert(isNumber(ok), ...args);
+export const assertIsNumber = /* #__PURE__ */(ok, ...args) => assert(isNumber(ok), ...args);

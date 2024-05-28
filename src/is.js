@@ -28,17 +28,17 @@ export const isa = (constructor) => (input) => input instanceof constructor;
 
 
 const IS_LOOKUP = new Map([
-  [ Array,     isArray     ],
-  [ Number,    isNumber    ],
-  [ String,    isString    ],
-  [ Boolean,   isBoolean   ],
-  [ Map,       isMap       ],
-  [ Set,       isSet       ],
-  [ Date,      isDate      ],
-  [ RegExp,    isRegExp    ],
+  [ Array, isArray ],
+  [ Number, isNumber ],
+  [ String, isString ],
+  [ Boolean, isBoolean ],
+  [ Map, isMap ],
+  [ Set, isSet ],
+  [ Date, isDate ],
+  [ RegExp, isRegExp ],
   [ undefined, isUndefined ],
-  [ true,      isTruthy    ],
-  [ false,     isFalsey    ],
+  [ true, isTruthy ],
+  [ false, isFalsey ],
 ]);
 
 /**

@@ -3,7 +3,7 @@
  * Generates a url safe string from the given input
  *
  * @param   {string}  input
- * @param   {Object}  [options]
+ * @param   {object}  [options]
  * @param   {string}  [options.delimiter]
  * @param   {boolean} [options.separators]
  *
@@ -13,11 +13,11 @@
 export default function slugify (input, { delimiter = '-', separators = false } = {}) {
   var i = separators && separators.length;
   var slug = input;
-  var regexEscape = new RegExp(/[[/\\^$*+?.()|{}\]]/g);
+  var regexEscape = /[[/\\^$*+?.()|{}\]]/g;
   var regexDelimiter = delimiter.replace(regexEscape, '\\$&');
-  var prohibited = new RegExp('([^a-z0-9' + regexDelimiter + '])', 'g');
-  var consecutive = new RegExp('(' + regexDelimiter + '+)', 'g');
-  var trim = new RegExp('^' + regexDelimiter + '*(.*?)' + regexDelimiter + '*$');
+  var prohibited = new RegExp(`([^a-z0-9${regexDelimiter}])`, 'g');
+  var consecutive = new RegExp(`(${regexDelimiter}+)`, 'g');
+  var trim = new RegExp(`^${regexDelimiter}*(.*?)${regexDelimiter}*$`);
   var sanitizer = {
     // common latin
     'á': 'a',

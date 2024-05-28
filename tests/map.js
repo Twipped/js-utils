@@ -21,10 +21,10 @@ tap.test('map object', async (t) => {
 
 tap.test('map map', async (t) => {
   const targets = [
-    [ '1',  1 ],
-    [ '2',  '2' ],
-    [ '3',  [ 3 ] ],
-    [ '4',  { four: 4 } ],
+    [ '1', 1 ],
+    [ '2', '2' ],
+    [ '3', [ 3 ] ],
+    [ '4', { four: 4 } ],
   ];
 
   const m = new Map(targets);

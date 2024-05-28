@@ -9,9 +9,9 @@ import {
   isIterable,
 } from './types.js';
 
-/** @constant */ export const MAPMODE_ARRAY  = 'ARRAY';
-/** @constant */ export const MAPMODE_SET    = 'SET';
-/** @constant */ export const MAPMODE_MAP    = 'MAP';
+/** @constant */ export const MAPMODE_ARRAY = 'ARRAY';
+/** @constant */ export const MAPMODE_SET = 'SET';
+/** @constant */ export const MAPMODE_MAP = 'MAP';
 /** @constant */ export const MAPMODE_OBJECT = 'OBJECT';
 /** @constant */ export const MAPMODE_ITERABLE = 'ITERABLE';
 /** @constant */ export const MAPMODE_ITERATOR = 'ITERATOR';

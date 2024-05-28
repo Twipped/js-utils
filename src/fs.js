@@ -24,7 +24,7 @@ export async function isWritable (file) {
     return true;
   } catch (err) {
     if (err.code === 'ENOENT') {
-      return await fs.access(dirname(file), fsConstants.F_OK | fsConstants.W_OK).then(() => true, () => false);
+      return fs.access(dirname(file), fsConstants.F_OK | fsConstants.W_OK).then(() => true, () => false);
     }
     return false;
   }
@@ -35,6 +35,7 @@ export async function isWritable (file) {
  * If the file already exists, its modification time will be updated.
  *
  * @param   {string} file
+ * @returns {Promise}
  *
  * @category File System
  */
@@ -42,7 +43,8 @@ export async function touch (file) {
   const stats = await linkStat(file);
   if (stats) {
     if (stats.isDirectory()) return; // nothing to do
-    return await fs.utimes(file, new Date, new Date);
+    fs.utimes(file, new Date, new Date);
+    return;
   }
 
   if (!await exists(dirname(file))) await mkdir(dirname(file));
@@ -54,12 +56,13 @@ export async function touch (file) {
  * Deletes the file at the given path, if it exists.
  *
  * @param   {string} file
+ * @returns {Promise}
  *
  * @category File System
  */
 export async function remove (file) {
   const stats = await linkStat(file);
-  if (!stats) return;
+  if (!stats) return undefined;
   if (stats.isDirectory()) return fs.rmdir(file, { recursive: true });
   return fs.unlink(file);
 }
@@ -68,8 +71,8 @@ export async function remove (file) {
  * Write the passed data structure to a file as JSON.
  *
  * @param   {string} file
- * @param   {Object|Array} object
- * @param   {Object} [options] Options for fs.writeFile
+ * @param   {object | Array} object
+ * @param   {object} [options] Options for fs.writeFile
  * @param   {string} [options.encoding] File encoding for the data, defaults to utf8
  *
  * @alias writeJSON
@@ -88,12 +91,12 @@ export const writeJSON = writeJson;
  * Reads a JSON file from disk and parses its contents.
  *
  * @param   {string}   file
- * @param   {Object}   [options] Options for fs.readFile
+ * @param   {object}   [options] Options for fs.readFile
  * @param   {Function} [options.reviver]
  * @param   {boolean}  [options.quiet]
  * @param   {string}   [options.encoding] File encoding for the data, defaults to utf8
  *
- * @returns {Object|Array|string|number|boolean}
+ * @returns {object | Array | string | number | boolean}
  * @alias readJSON
  * @category File System
  */

@@ -5,7 +5,7 @@ import AbortError from './abort-error-exception.js';
  * Generates a promise which resolves on the next animation frame.
  *
  * @function pDefer
- * @param   {Object} [options] Options
+ * @param   {object} [options] Options
  * @param   {AbortSignal} [options.signal] Signal from an AbortController
  *
  * @returns {Promise}
